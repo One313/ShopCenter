@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ShopCenter</string>
+    <string name="navigation_bottom_my_shop">My Shop</string>
+    <string name="navigation_bottom_cart">Cart</string>
+    <string name="navigation_bottom_categories">Categories</string>
+    <string name="navigation_bottom_home">Home</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
