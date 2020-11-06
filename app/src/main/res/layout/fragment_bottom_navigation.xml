@@ -5,8 +5,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".view.fragment.ShopEntryPointFragment">
+        android:layout_height="wrap_content"
+        tools:context=".view.fragment.BottomNavigationFragment">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation_shop_center"
@@ -15,8 +15,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:menu="@menu/menu_navigation_bottom" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,5 @@
-package com.example.shopcenter.view.activity;
+package com.example.shopcenter.view.activity.abstract_activity;
 
-import android.database.DatabaseUtils;
 import android.os.Bundle;
 
 import androidx.annotation.LayoutRes;

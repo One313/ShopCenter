@@ -1,24 +1,22 @@
 package com.example.shopcenter.view.fragment;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 import com.example.shopcenter.R;
 
+public class CartFragment extends Fragment {
 
-public class ShopEntryPointFragment extends Fragment {
-
-    public ShopEntryPointFragment() {
+    public CartFragment() {
         // Required empty public constructor
     }
 
-    public static ShopEntryPointFragment newInstance() {
-        ShopEntryPointFragment fragment = new ShopEntryPointFragment();
+    public static CartFragment newInstance() {
+        CartFragment fragment = new CartFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -33,6 +31,6 @@ public class ShopEntryPointFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_shop_entry_point, container, false);
+        return inflater.inflate(R.layout.fragment_cart, container, false);
     }
 }
