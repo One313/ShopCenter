@@ -10,19 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.shopcenter.R;
 import com.example.shopcenter.adapter.LatestProductAdapter;
-import com.example.shopcenter.data.remote.ProductManager;
 import com.example.shopcenter.databinding.FragmentLatestProductsBinding;
-import com.example.shopcenter.model.ProductItem;
 import com.example.shopcenter.viewmodel.LatestProductViewModel;
-
-import java.util.List;
-import java.util.Objects;
 
 public class LatestProductsFragment extends Fragment {
 
@@ -56,11 +50,8 @@ public class LatestProductsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         mLatestProductsBinding = DataBindingUtil
-                .inflate(inflater,
-                        R.layout.fragment_latest_products,
-                        container, false);
+                .inflate(inflater, R.layout.fragment_latest_products, container, false);
         return mLatestProductsBinding.getRoot();
     }
 
@@ -73,12 +64,9 @@ public class LatestProductsFragment extends Fragment {
 
     private void registerObservers() {
         mLatestProductViewModel.getProductItemsListLiveData()
-                .observe(this, new Observer<List<ProductItem>>() {
-                    @Override
-                    public void onChanged(List<ProductItem> productItems) {
-                        mLatestProductViewModel.setProductItems(productItems);
-                        updateUI();
-                    }
+                .observe(this, productItems -> {
+                    mLatestProductViewModel.setProductItems(productItems);
+                    updateUI();
                 });
     }
 
@@ -106,7 +94,7 @@ public class LatestProductsFragment extends Fragment {
     private void replace(@NonNull Fragment fragment) {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container_upper, fragment)
+                .replace(R.id.fragment_container_upper, fragment, fragment.getClass().getName())
                 .commit();
     }
 }

@@ -36,46 +36,13 @@ public class CategoriesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         mCategoriesBinding = DataBindingUtil
-                .inflate(inflater,
-                        R.layout.fragment_categories,
-                        container,
-                        false);
+                .inflate(inflater, R.layout.fragment_categories, container, false);
         return mCategoriesBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        mCategoriesBinding.buttonLatestProducts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                replace(LatestProductsFragment.newInstance());
-            }
-        });
-
-        mCategoriesBinding.buttonMostVisitedProducts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        mCategoriesBinding.buttonBestProducts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-    }
-
-    private void replace(@NonNull Fragment fragment) {
-        if (getFragmentManager() != null)
-            getFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container_upper, fragment)
-                    .commit();
     }
 }
