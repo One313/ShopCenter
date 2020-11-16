@@ -5,8 +5,8 @@ public class ProductItem {
     private int mID;
     private String
             mName,
-            mPrice,
-            mWeight;
+            mDescription,
+            mPrice;
 
     private ImageItem[] mImages;
 
@@ -26,20 +26,20 @@ public class ProductItem {
         mName = name;
     }
 
+    public String getDescription() {
+        return mDescription;
+    }
+
+    public void setDescription(String description) {
+        mDescription = description;
+    }
+
     public String getPrice() {
         return mPrice;
     }
 
     public void setPrice(String price) {
         mPrice = price;
-    }
-
-    public String getWeight() {
-        return mWeight;
-    }
-
-    public void setWeight(String weight) {
-        mWeight = weight;
     }
 
     public ImageItem[] getImages() {
@@ -53,11 +53,11 @@ public class ProductItem {
     public ProductItem() {
     }
 
-    public ProductItem(int ID, String name, String price, String weight, ImageItem[] images) {
+    public ProductItem(int ID, String name, String description, String price, ImageItem[] images) {
         mID = ID;
         mName = name;
+        mDescription = description;
         mPrice = price;
-        mWeight = weight;
         mImages = images;
     }
 }

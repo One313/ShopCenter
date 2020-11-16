@@ -3,42 +3,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".view.fragment.HomeFragment">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_latest_products"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/button_categories_latest_products"
-            app:layout_constraintBottom_toTopOf="@+id/button_most_visited_products"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".view.fragment.HomeFragment">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_most_visited_products"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:text="@string/button_categories_the_most_visited_products"
-            app:layout_constraintBottom_toTopOf="@+id/button_best_products"
-            app:layout_constraintEnd_toEndOf="@+id/button_latest_products"
-            app:layout_constraintStart_toStartOf="@+id/button_latest_products"
-            app:layout_constraintTop_toBottomOf="@+id/button_latest_products" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_home_latest_products"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/purple_200"
+                app:layout_constraintBottom_toTopOf="@+id/button_most_visited_products"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_best_products"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:text="@string/button_categories_the_best_products"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/button_most_visited_products"
-            app:layout_constraintStart_toStartOf="@+id/button_most_visited_products"
-            app:layout_constraintTop_toBottomOf="@+id/button_most_visited_products" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_most_visited_products"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:text="@string/button_categories_the_most_visited_products"
+                app:layout_constraintBottom_toTopOf="@+id/button_best_products"
+                app:layout_constraintEnd_toEndOf="@+id/recycler_view_home_latest_products"
+                app:layout_constraintStart_toStartOf="@+id/recycler_view_home_latest_products"
+                app:layout_constraintTop_toBottomOf="@+id/recycler_view_home_latest_products" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_best_products"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:text="@string/button_categories_the_best_products"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/button_most_visited_products"
+                app:layout_constraintStart_toStartOf="@+id/button_most_visited_products"
+                app:layout_constraintTop_toBottomOf="@+id/button_most_visited_products" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

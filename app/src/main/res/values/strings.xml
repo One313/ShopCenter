@@ -11,4 +11,5 @@
     <string name="button_categories_latest_products">Latest Products</string>
     <string name="button_categories_the_most_visited_products">The most visited products</string>
     <string name="button_categories_the_best_products">The best products</string>
+    <string name="see_all">See All</string>
 </resources>

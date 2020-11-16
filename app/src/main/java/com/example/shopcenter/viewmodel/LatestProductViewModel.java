@@ -48,6 +48,10 @@ public class LatestProductViewModel extends AndroidViewModel {
         mProductItemsListLiveData = mProductManager.getProductItemsLiveData();
     }
 
+    public void onClickNavigation() {
+        mCallback.onClickNavigation();
+    }
+
     public void onClickProductItems(int position) {
 
     }
@@ -56,4 +60,16 @@ public class LatestProductViewModel extends AndroidViewModel {
         return mProductItems == null ? 0 : mProductItems.size();
     }
 
+
+
+
+    public interface CallbackLatestProductViewModel {
+        void onClickNavigation();
+    }
+
+    private CallbackLatestProductViewModel mCallback;
+
+    public void setCallback(CallbackLatestProductViewModel callback) {
+        mCallback = callback;
+    }
 }

@@ -34,15 +34,17 @@ public class GetProductItemsDeserializer implements JsonDeserializer<List<Produc
                 imageItems.add(new ImageItem(
                         imageObj.get("id").getAsInt(),
                         imageObj.get("name").getAsString(),
-                        imageObj.get("src").getAsString()
-                ));
+                        imageObj.get("src").getAsString())
+                );
             }
 
-            productItems.add(new ProductItem(jsonObj.get("id").getAsInt(),
+            productItems.add(new ProductItem(
+                    jsonObj.get("id").getAsInt(),
                     jsonObj.get("name").getAsString(),
+                    jsonObj.get("description").getAsString(),
                     jsonObj.get("price").getAsString(),
-                    jsonObj.get("weight").getAsString(),
-                    imageItems.toArray(new ImageItem[0])));
+                    imageItems.toArray(new ImageItem[0]))
+            );
 
             imageItems.clear();
         }
