@@ -63,7 +63,9 @@ public class HomeFragment extends Fragment {
                     mAdapters[counter].notifyDataSetChanged();
 
             });
-            mViewModels[i].setCallbackNavigation(() -> replace(ProductItemsFragment.newInstance()));
+
+            mViewModels[i].setCallbackNavigation(() ->
+                replace(ProductItemsFragment.newInstance(counter)));
         }
     }
 

@@ -15,24 +15,30 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.shopcenter.R;
 import com.example.shopcenter.adapter.ProductAdapter;
-import com.example.shopcenter.databinding.FragmentLatestProductsBinding;
+import com.example.shopcenter.databinding.FragmentProductItemsBinding;
 import com.example.shopcenter.viewmodel.LatestProductsViewModel;
+import com.example.shopcenter.viewmodel.MostVisitedProductsViewModel;
+import com.example.shopcenter.viewmodel.StrategyProductViewModel;
+import com.example.shopcenter.viewmodel.TheBestProductsViewModel;
 
 public class ProductItemsFragment extends Fragment {
 
     public static final int SPAN_COUNT = 2;
-    private FragmentLatestProductsBinding mLatestProductsBinding;
-    private LatestProductsViewModel mLatestProductsViewModel;
-    private ProductAdapter mProductAdapter;
+    public static final String ARG_I = "com.example.shopcenter.view.fragment.i";
+    private FragmentProductItemsBinding mProductItemsBinding;
+    private StrategyProductViewModel[] mViewModels = new StrategyProductViewModel[3];
+    private ProductAdapter mAdapter;
+    private int mI;
 
 
     public ProductItemsFragment() {
         // Required empty public constructor
     }
 
-    public static ProductItemsFragment newInstance() {
+    public static ProductItemsFragment newInstance(int i) {
         ProductItemsFragment fragment = new ProductItemsFragment();
         Bundle args = new Bundle();
+        args.putInt(ARG_I, i);
         fragment.setArguments(args);
         return fragment;
     }
@@ -40,45 +46,59 @@ public class ProductItemsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mLatestProductsViewModel =
-                new ViewModelProvider(requireActivity()).get(LatestProductsViewModel.class);
-
-        registerObservers();
+        if (getArguments() != null) {
+            mI = getArguments().getInt(ARG_I);
+        }
+        initializeViewModels();
+        registerObserver(mI);
         onBackPressed();
+    }
+
+    private void initializeViewModels() {
+        switch (mI) {
+            case 0:
+                mViewModels[mI] = new ViewModelProvider(requireActivity())
+                        .get(LatestProductsViewModel.class);
+                break;
+            case 1:
+                mViewModels[mI] =
+                        new ViewModelProvider(requireActivity())
+                                .get(MostVisitedProductsViewModel.class);
+                break;
+            default:
+                mViewModels[mI] =
+                        new ViewModelProvider(requireActivity())
+                                .get(TheBestProductsViewModel.class);
+                break;
+        }
+    }
+
+    private void updateUI(int i) {
+        if (mAdapter == null) {
+            mAdapter = new ProductAdapter(ProductItemsFragment.this, mViewModels[i]);
+            mProductItemsBinding.recyclerViewProductItems.setAdapter(mAdapter);
+        } else mAdapter.notifyDataSetChanged();
+    }
+
+    private void registerObserver(int i) {
+        mViewModels[i].getProductItemsListLiveData().observe(this, productItems -> {
+            updateUI(i);
+        });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mLatestProductsBinding = DataBindingUtil
-                .inflate(inflater, R.layout.fragment_latest_products, container, false);
-        return mLatestProductsBinding.getRoot();
+        mProductItemsBinding = DataBindingUtil
+                .inflate(inflater, R.layout.fragment_product_items, container, false);
+        return mProductItemsBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mLatestProductsBinding.recyclerViewLatestProducts
+        mProductItemsBinding.recyclerViewProductItems
                 .setLayoutManager(new GridLayoutManager(getContext(), SPAN_COUNT));
-    }
-
-    private void registerObservers() {
-        mLatestProductsViewModel.getProductItemsListLiveData()
-                .observe(this, productItems -> {
-                    mLatestProductsViewModel.setProductItems(productItems);
-                    updateUI();
-                });
-    }
-
-    private void updateUI() {
-        if (mProductAdapter == null) {
-            mProductAdapter =
-                    new ProductAdapter(this, mLatestProductsViewModel);
-            mLatestProductsBinding.recyclerViewLatestProducts
-                    .setAdapter(mProductAdapter);
-        } else {
-            mProductAdapter.notifyDataSetChanged();
-        }
     }
 
     private void onBackPressed() {
