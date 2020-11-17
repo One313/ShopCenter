@@ -6,7 +6,7 @@
         android:id="@+id/recycler_view_latest_products"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.fragment.LatestProductsFragment">
+        tools:context=".view.fragment.ProductItemsFragment">
 
     </androidx.recyclerview.widget.RecyclerView>
 </layout>

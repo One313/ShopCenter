@@ -19,31 +19,34 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
                 android:background="@color/purple_200"
-                app:layout_constraintBottom_toTopOf="@+id/button_most_visited_products"
+                app:layout_constraintBottom_toTopOf="@+id/recycler_view_home_most_visited_products"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_most_visited_products"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_home_most_visited_products"
                 android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:text="@string/button_categories_the_most_visited_products"
-                app:layout_constraintBottom_toTopOf="@+id/button_best_products"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@color/purple_200"
+                app:layout_constraintBottom_toTopOf="@+id/recycler_view_home_best_products"
                 app:layout_constraintEnd_toEndOf="@+id/recycler_view_home_latest_products"
                 app:layout_constraintStart_toStartOf="@+id/recycler_view_home_latest_products"
                 app:layout_constraintTop_toBottomOf="@+id/recycler_view_home_latest_products" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_best_products"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_home_best_products"
                 android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:text="@string/button_categories_the_best_products"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@color/purple_200"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/button_most_visited_products"
-                app:layout_constraintStart_toStartOf="@+id/button_most_visited_products"
-                app:layout_constraintTop_toBottomOf="@+id/button_most_visited_products" />
+                app:layout_constraintEnd_toEndOf="@+id/recycler_view_home_most_visited_products"
+                app:layout_constraintStart_toStartOf="@+id/recycler_view_home_most_visited_products"
+                app:layout_constraintTop_toBottomOf="@+id/recycler_view_home_most_visited_products" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

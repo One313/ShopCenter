@@ -14,15 +14,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopcenter.R;
-import com.example.shopcenter.adapter.PresentationLatestProductAdapter;
+import com.example.shopcenter.adapter.PresentationProductAdapter;
 import com.example.shopcenter.databinding.FragmentHomeBinding;
-import com.example.shopcenter.viewmodel.LatestProductViewModel;
+import com.example.shopcenter.viewmodel.LatestProductsViewModel;
+import com.example.shopcenter.viewmodel.MostVisitedProductsViewModel;
+import com.example.shopcenter.viewmodel.StrategyProductViewModel;
+import com.example.shopcenter.viewmodel.TheBestProductsViewModel;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding mFragmentHomeBinding;
-    private LatestProductViewModel mLatestProductViewModel;
-    private PresentationLatestProductAdapter mAdapter;
+
+    private StrategyProductViewModel[] mViewModels = new StrategyProductViewModel[3];
+    private PresentationProductAdapter[] mAdapters = new PresentationProductAdapter[3];
+    private RecyclerView[] mRecyclerViews = new RecyclerView[3];
 
     public HomeFragment() {
         // Required empty public constructor
@@ -39,16 +44,27 @@ public class HomeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mLatestProductViewModel = new ViewModelProvider(requireActivity())
-                .get(LatestProductViewModel.class);
+        mViewModels = new StrategyProductViewModel[]{
+                new ViewModelProvider(requireActivity()).get(LatestProductsViewModel.class),
+                new ViewModelProvider(requireActivity()).get(MostVisitedProductsViewModel.class),
+                new ViewModelProvider(requireActivity()).get(TheBestProductsViewModel.class)};
 
-        mLatestProductViewModel.getProductItemsListLiveData()
-                .observe(this, productItems -> {
-                    mLatestProductViewModel.setProductItems(productItems);
-                    UpdateUI();
-                });
+        for (int i = 0; i < mViewModels.length; i++) {
+            int counter = i;
+            mViewModels[i].getProductItemsListLiveData().observe(this, productItems -> {
 
-        mLatestProductViewModel.setCallback(() -> replace(LatestProductsFragment.newInstance()));
+                mViewModels[counter].setProductItems(productItems);
+
+                if (mAdapters[counter] == null) {
+                    mAdapters[counter] = new PresentationProductAdapter(HomeFragment.this,
+                            mViewModels[counter]);
+                    mRecyclerViews[counter].setAdapter(mAdapters[counter]);
+                } else
+                    mAdapters[counter].notifyDataSetChanged();
+
+            });
+            mViewModels[i].setCallbackNavigation(() -> replace(ProductItemsFragment.newInstance()));
+        }
     }
 
     @Override
@@ -63,17 +79,15 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),
-                LinearLayoutManager.HORIZONTAL, true);
-        mFragmentHomeBinding.recyclerViewHomeLatestProducts.setLayoutManager(layoutManager);
-    }
+        mRecyclerViews = new RecyclerView[]{
+                mFragmentHomeBinding.recyclerViewHomeLatestProducts,
+                mFragmentHomeBinding.recyclerViewHomeMostVisitedProducts,
+                mFragmentHomeBinding.recyclerViewHomeBestProducts};
 
-    private void UpdateUI() {
-        if (mAdapter == null) {
-            mAdapter = new PresentationLatestProductAdapter(this, mLatestProductViewModel);
-            mFragmentHomeBinding.recyclerViewHomeLatestProducts.setAdapter(mAdapter);
-        } else
-            mAdapter.notifyDataSetChanged();
+        for (RecyclerView recyclerView : mRecyclerViews) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
+                    LinearLayoutManager.HORIZONTAL, true));
+        }
     }
 
     private void replace(@NonNull Fragment fragment) {

@@ -7,18 +7,18 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.shopcenter.data.remote.ProductManager;
+import com.example.shopcenter.callback.CallbackNavigation;
 import com.example.shopcenter.model.ProductItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LatestProductViewModel extends AndroidViewModel {
+public abstract class StrategyProductViewModel extends AndroidViewModel {
 
-    private ProductManager mProductManager;
-    private List<ProductItem> mProductItems;
-    private LiveData<List<ProductItem>> mProductItemsListLiveData;
+    private List<ProductItem> mProductItems = new ArrayList<>();
+    private final LiveData<List<ProductItem>> mProductItemsListLiveData;
     private MutableLiveData<ProductItem> mProductItemSelectedMutableLiveData;
+    private CallbackNavigation mCallbackNavigation;
 
     public List<ProductItem> getProductItems() {
         return mProductItems;
@@ -41,35 +41,25 @@ public class LatestProductViewModel extends AndroidViewModel {
         mProductItemSelectedMutableLiveData = productItemSelectedMutableLiveData;
     }
 
-    public LatestProductViewModel(@NonNull Application application) {
+    public void setCallbackNavigation(CallbackNavigation callbackNavigation) {
+        mCallbackNavigation = callbackNavigation;
+    }
+
+    public StrategyProductViewModel(@NonNull Application application,
+                                    MutableLiveData<List<ProductItem>> productItemsListLiveData) {
         super(application);
-        mProductItems = new ArrayList<>();
-        mProductManager = ProductManager.getInstance();
-        mProductItemsListLiveData = mProductManager.getProductItemsLiveData();
+        mProductItemsListLiveData = productItemsListLiveData;
     }
 
     public void onClickNavigation() {
-        mCallback.onClickNavigation();
+        mCallbackNavigation.onClickNavigation();
     }
 
-    public void onClickProductItems(int position) {
+    public abstract void onClickProductItems(int position);
 
-    }
+    public abstract String getMessageViewModel();
 
     public int getListSize() {
         return mProductItems == null ? 0 : mProductItems.size();
-    }
-
-
-
-
-    public interface CallbackLatestProductViewModel {
-        void onClickNavigation();
-    }
-
-    private CallbackLatestProductViewModel mCallback;
-
-    public void setCallback(CallbackLatestProductViewModel callback) {
-        mCallback = callback;
     }
 }

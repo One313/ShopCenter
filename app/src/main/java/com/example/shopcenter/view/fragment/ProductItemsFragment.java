@@ -14,24 +14,24 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.shopcenter.R;
-import com.example.shopcenter.adapter.LatestProductAdapter;
+import com.example.shopcenter.adapter.ProductAdapter;
 import com.example.shopcenter.databinding.FragmentLatestProductsBinding;
-import com.example.shopcenter.viewmodel.LatestProductViewModel;
+import com.example.shopcenter.viewmodel.LatestProductsViewModel;
 
-public class LatestProductsFragment extends Fragment {
+public class ProductItemsFragment extends Fragment {
 
     public static final int SPAN_COUNT = 2;
     private FragmentLatestProductsBinding mLatestProductsBinding;
-    private LatestProductViewModel mLatestProductViewModel;
-    private LatestProductAdapter mLatestProductAdapter;
+    private LatestProductsViewModel mLatestProductsViewModel;
+    private ProductAdapter mProductAdapter;
 
 
-    public LatestProductsFragment() {
+    public ProductItemsFragment() {
         // Required empty public constructor
     }
 
-    public static LatestProductsFragment newInstance() {
-        LatestProductsFragment fragment = new LatestProductsFragment();
+    public static ProductItemsFragment newInstance() {
+        ProductItemsFragment fragment = new ProductItemsFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -40,8 +40,8 @@ public class LatestProductsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mLatestProductViewModel =
-                new ViewModelProvider(requireActivity()).get(LatestProductViewModel.class);
+        mLatestProductsViewModel =
+                new ViewModelProvider(requireActivity()).get(LatestProductsViewModel.class);
 
         registerObservers();
         onBackPressed();
@@ -63,21 +63,21 @@ public class LatestProductsFragment extends Fragment {
     }
 
     private void registerObservers() {
-        mLatestProductViewModel.getProductItemsListLiveData()
+        mLatestProductsViewModel.getProductItemsListLiveData()
                 .observe(this, productItems -> {
-                    mLatestProductViewModel.setProductItems(productItems);
+                    mLatestProductsViewModel.setProductItems(productItems);
                     updateUI();
                 });
     }
 
     private void updateUI() {
-        if (mLatestProductAdapter == null) {
-            mLatestProductAdapter =
-                    new LatestProductAdapter(this, mLatestProductViewModel);
+        if (mProductAdapter == null) {
+            mProductAdapter =
+                    new ProductAdapter(this, mLatestProductsViewModel);
             mLatestProductsBinding.recyclerViewLatestProducts
-                    .setAdapter(mLatestProductAdapter);
+                    .setAdapter(mProductAdapter);
         } else {
-            mLatestProductAdapter.notifyDataSetChanged();
+            mProductAdapter.notifyDataSetChanged();
         }
     }
 

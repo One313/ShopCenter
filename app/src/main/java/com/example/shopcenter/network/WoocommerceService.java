@@ -11,6 +11,6 @@ import retrofit2.http.QueryMap;
 
 public interface WoocommerceService {
 
-    @GET(".")
+    @GET("products")
     Call<List<ProductItem>> listItems(@QueryMap Map<String, String> options);
 }

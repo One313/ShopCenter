@@ -12,25 +12,26 @@ import com.example.shopcenter.R;
 import com.example.shopcenter.databinding.RowPresentationBinding;
 import com.example.shopcenter.databinding.RowPresentationFirstPageBinding;
 import com.example.shopcenter.databinding.RowPresentationLastPageBinding;
-import com.example.shopcenter.viewmodel.LatestProductViewModel;
+import com.example.shopcenter.viewmodel.LatestProductsViewModel;
+import com.example.shopcenter.viewmodel.StrategyProductViewModel;
 import com.squareup.picasso.Picasso;
 
-public class PresentationLatestProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PresentationProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int PRESENTATION_SIZE = 7;
     private LifecycleOwner mOwner;
-    private LatestProductViewModel mLatestProductViewModel;
+    private StrategyProductViewModel mStrategyProductViewModel;
 
-    public PresentationLatestProductAdapter(LifecycleOwner owner,
-                                            LatestProductViewModel latestProductViewModel) {
+    public PresentationProductAdapter(LifecycleOwner owner,
+                                      StrategyProductViewModel strategyProductViewModel) {
         mOwner = owner;
-        mLatestProductViewModel = latestProductViewModel;
+        mStrategyProductViewModel = strategyProductViewModel;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(mLatestProductViewModel.getApplication());
+        LayoutInflater inflater = LayoutInflater.from(mStrategyProductViewModel.getApplication());
         switch (viewType) {
             case 0:
                 RowPresentationFirstPageBinding firstPageBinding =
@@ -73,7 +74,7 @@ public class PresentationLatestProductAdapter extends RecyclerView.Adapter<Recyc
         public FirstPagePresentationHolder(@NonNull RowPresentationFirstPageBinding binding) {
             super(binding.getRoot());
             binding.setLifecycleOwner(mOwner);
-            binding.setLatestProductViewModel(mLatestProductViewModel);
+            binding.setStrategyProductViewModel(mStrategyProductViewModel);
         }
     }
 
@@ -85,7 +86,7 @@ public class PresentationLatestProductAdapter extends RecyclerView.Adapter<Recyc
             super(binding.getRoot());
             mRowPresentationBinding = binding;
             mRowPresentationBinding.setLifecycleOwner(mOwner);
-            mRowPresentationBinding.setLatestProductViewModel(mLatestProductViewModel);
+            mRowPresentationBinding.setStrategyProductViewModel(mStrategyProductViewModel);
         }
 
         public void bind(int position) {
@@ -93,7 +94,7 @@ public class PresentationLatestProductAdapter extends RecyclerView.Adapter<Recyc
             mRowPresentationBinding.executePendingBindings();
 
             Picasso.get()
-                    .load(mLatestProductViewModel.getProductItems().get(position - 1).getImages()[0].getSrc())
+                    .load(mStrategyProductViewModel.getProductItems().get(position - 1).getImages()[0].getSrc())
                     .placeholder(R.drawable.ic_navigation_bottom_cart)
                     .into(mRowPresentationBinding.imageViewRowPresentation);
         }
@@ -104,7 +105,7 @@ public class PresentationLatestProductAdapter extends RecyclerView.Adapter<Recyc
         public LastPagePresentationHolder(@NonNull RowPresentationLastPageBinding binding) {
             super(binding.getRoot());
             binding.setLifecycleOwner(mOwner);
-            binding.setLatestProductViewModel(mLatestProductViewModel);
+            binding.setStrategyProductViewModel(mStrategyProductViewModel);
         }
     }
 }
