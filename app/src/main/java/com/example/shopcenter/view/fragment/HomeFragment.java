@@ -64,8 +64,14 @@ public class HomeFragment extends Fragment {
 
             });
 
+            mViewModels[i].getProductItemSelectedMutableLiveData()
+                    .observe(this, productItem -> {
+                        mViewModels[counter].setProductItemSubject(productItem);
+                        replace(ProductDetailFragment.newInstance(productItem.getID()));
+                    });
+
             mViewModels[i].setCallbackNavigation(() ->
-                replace(ProductItemsFragment.newInstance(counter)));
+                    replace(ProductItemsFragment.newInstance(counter)));
         }
     }
 

@@ -15,11 +15,6 @@ public class MostVisitedProductsViewModel extends StrategyProductViewModel {
     }
 
     @Override
-    public void onClickProductItems(int position) {
-
-    }
-
-    @Override
     public String getMessageViewModel() {
         return getApplication().getString(R.string.message_the_most_visited_products);
     }

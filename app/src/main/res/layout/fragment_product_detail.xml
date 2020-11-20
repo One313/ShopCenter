@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="productDetailViewModel"
+            type="com.example.shopcenter.viewmodel.ProductDetailViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".view.fragment.ProductDetailFragment">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager_slider"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/text_view_detail_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/text_view_detail_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="@{productDetailViewModel.productItemSubject.name}"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/text_view_detail_price"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_pager_slider" />
+
+            <TextView
+                android:id="@+id/text_view_detail_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:text="@{productDetailViewModel.productItemSubject.price}"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/text_view_detail_description"
+                app:layout_constraintEnd_toEndOf="@+id/text_view_detail_name"
+                app:layout_constraintStart_toStartOf="@+id/text_view_detail_name"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_detail_name" />
+
+            <TextView
+                android:id="@+id/text_view_detail_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="@{productDetailViewModel.productItemSubject.description}"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/text_view_detail_price"
+                app:layout_constraintStart_toStartOf="@+id/text_view_detail_price"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_detail_price" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

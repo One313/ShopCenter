@@ -3,40 +3,37 @@ package com.example.shopcenter.data.remote;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.shopcenter.model.ProductItem;
-import com.example.shopcenter.network.GetProductItemsDeserializer;
-import com.example.shopcenter.network.RetrofitInstance;
 import com.example.shopcenter.network.WoocommerceService;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
+import static com.example.shopcenter.network.RetrofitInstance.RETROFIT_LIST_PRODUCT;
+import static com.example.shopcenter.network.RetrofitInstance.RETROFIT_PRODUCT;
 import static com.example.shopcenter.network.RetrofitParams.QUERY_OPTIONS;
 import static com.example.shopcenter.network.RetrofitParams.QUERY_POPULARITY;
 import static com.example.shopcenter.network.RetrofitParams.QUERY_RATING;
 
 public class ProductManager {
-    private static ProductManager sProductManager;
+
+    private static final ProductManager INSTANCE = new ProductManager();
 
     public static ProductManager getInstance() {
-        if (sProductManager == null)
-            sProductManager = new ProductManager();
-        return sProductManager;
+        return INSTANCE;
     }
 
-    private final WoocommerceService mWoocommerceService;
-    private MutableLiveData<List<ProductItem>>
+    private final MutableLiveData<List<ProductItem>>
             mLatestProductItemsLiveData = new MutableLiveData<>(),
             mMostVisitedProductItemsLiveData = new MutableLiveData<>(),
             mTheBestProductItemsLiveData = new MutableLiveData<>();
+    private final MutableLiveData<ProductItem> mProductItemMutableLiveData = new MutableLiveData<>();
 
     public MutableLiveData<List<ProductItem>> getLatestProductItemsLiveData() {
-        Call<List<ProductItem>> call = mWoocommerceService.listItems(QUERY_OPTIONS);
+        Call<List<ProductItem>> call = RETROFIT_LIST_PRODUCT.create(WoocommerceService.class)
+                .listItems(QUERY_OPTIONS);
         call.enqueue(new Callback<List<ProductItem>>() {
             @Override
             public void onResponse(Call<List<ProductItem>> call,
@@ -52,12 +49,9 @@ public class ProductManager {
         return mLatestProductItemsLiveData;
     }
 
-    public void setLatestProductItemsLiveData(MutableLiveData<List<ProductItem>> latestProductItemsLiveData) {
-        mLatestProductItemsLiveData = latestProductItemsLiveData;
-    }
-
     public MutableLiveData<List<ProductItem>> getMostVisitedProductItemsLiveData() {
-        Call<List<ProductItem>> call = mWoocommerceService.listItems(QUERY_POPULARITY);
+        Call<List<ProductItem>> call = RETROFIT_LIST_PRODUCT.create(WoocommerceService.class)
+                .listItems(QUERY_POPULARITY);
         call.enqueue(new Callback<List<ProductItem>>() {
             @Override
             public void onResponse(Call<List<ProductItem>> call,
@@ -73,12 +67,9 @@ public class ProductManager {
         return mMostVisitedProductItemsLiveData;
     }
 
-    public void setMostVisitedProductItemsLiveData(MutableLiveData<List<ProductItem>> mostVisitedProductItemsLiveData) {
-        mMostVisitedProductItemsLiveData = mostVisitedProductItemsLiveData;
-    }
-
     public MutableLiveData<List<ProductItem>> getTheBestProductItemsLiveData() {
-        Call<List<ProductItem>> call = mWoocommerceService.listItems(QUERY_RATING);
+        Call<List<ProductItem>> call = RETROFIT_LIST_PRODUCT.create(WoocommerceService.class)
+                .listItems(QUERY_RATING);
         call.enqueue(new Callback<List<ProductItem>>() {
             @Override
             public void onResponse(Call<List<ProductItem>> call,
@@ -94,16 +85,23 @@ public class ProductManager {
         return mTheBestProductItemsLiveData;
     }
 
-    public void setTheBestProductItemsLiveData(MutableLiveData<List<ProductItem>> theBestProductItemsLiveData) {
-        mTheBestProductItemsLiveData = theBestProductItemsLiveData;
+    public MutableLiveData<ProductItem> getProductItemMutableLiveData(String productId) {
+        Call<ProductItem> call = RETROFIT_PRODUCT.create(WoocommerceService.class)
+                .item(productId, QUERY_OPTIONS);
+        call.enqueue(new Callback<ProductItem>() {
+            @Override
+            public void onResponse(Call<ProductItem> call, Response<ProductItem> response) {
+                mProductItemMutableLiveData.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ProductItem> call, Throwable t) {
+
+            }
+        });
+        return mProductItemMutableLiveData;
     }
 
     private ProductManager() {
-        Type type = new TypeToken<List<ProductItem>>() {
-        }.getType();
-        Object typeAdapter = new GetProductItemsDeserializer();
-
-        Retrofit retrofit = RetrofitInstance.getInstance(type, typeAdapter);
-        mWoocommerceService = retrofit.create(WoocommerceService.class);
     }
 }

@@ -15,11 +15,6 @@ public class TheBestProductsViewModel extends StrategyProductViewModel {
     }
 
     @Override
-    public void onClickProductItems(int position) {
-
-    }
-
-    @Override
     public String getMessageViewModel() {
         return getApplication().getString(R.string.message_the_best_products);
     }

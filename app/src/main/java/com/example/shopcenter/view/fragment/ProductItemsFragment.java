@@ -84,6 +84,12 @@ public class ProductItemsFragment extends Fragment {
         mViewModels[i].getProductItemsListLiveData().observe(this, productItems -> {
             updateUI(i);
         });
+
+        mViewModels[i].getProductItemSelectedMutableLiveData()
+                .observe(this, productItem -> {
+                    mViewModels[i].setProductItemSubject(productItem);
+                    replace(ProductDetailFragment.newInstance(productItem.getID()));
+                });
     }
 
     @Override

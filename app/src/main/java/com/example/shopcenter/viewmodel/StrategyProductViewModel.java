@@ -16,6 +16,7 @@ import java.util.List;
 public abstract class StrategyProductViewModel extends AndroidViewModel {
 
     private List<ProductItem> mProductItems = new ArrayList<>();
+    private ProductItem mProductItemSubject;
     private final LiveData<List<ProductItem>> mProductItemsListLiveData;
     private MutableLiveData<ProductItem> mProductItemSelectedMutableLiveData;
     private CallbackNavigation mCallbackNavigation;
@@ -26,6 +27,14 @@ public abstract class StrategyProductViewModel extends AndroidViewModel {
 
     public void setProductItems(List<ProductItem> productItems) {
         mProductItems = productItems;
+    }
+
+    public ProductItem getProductItemSubject() {
+        return mProductItemSubject;
+    }
+
+    public void setProductItemSubject(ProductItem productItemSubject) {
+        mProductItemSubject = productItemSubject;
     }
 
     public LiveData<List<ProductItem>> getProductItemsListLiveData() {
@@ -55,11 +64,14 @@ public abstract class StrategyProductViewModel extends AndroidViewModel {
         mCallbackNavigation.onClickNavigation();
     }
 
-    public abstract void onClickProductItems(int position);
-
-    public abstract String getMessageViewModel();
+    public void onClickProductItems(int position) {
+        ProductItem productItem = getProductItems().get(position);
+        mProductItemSelectedMutableLiveData.setValue(productItem);
+    }
 
     public int getListSize() {
         return mProductItems == null ? 0 : mProductItems.size();
     }
+
+    public abstract String getMessageViewModel();
 }
