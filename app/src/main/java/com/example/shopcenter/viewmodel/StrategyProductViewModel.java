@@ -74,4 +74,6 @@ public abstract class StrategyProductViewModel extends AndroidViewModel {
     }
 
     public abstract String getMessageViewModel();
+
+    public abstract void fetchItems(int page);
 }

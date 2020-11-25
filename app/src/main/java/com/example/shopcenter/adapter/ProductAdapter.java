@@ -63,6 +63,7 @@ public class ProductAdapter extends RecyclerView
 
             Picasso.get()
                     .load(mStrategyProductViewModel.getProductItems().get(position).getImages()[0].getSrc())
+                    .resize(0,100)
                     .placeholder(R.drawable.ic_navigation_bottom_cart)
                     .into(mRowProductItemBinding.imageViewRowLatest);
         }

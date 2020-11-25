@@ -12,7 +12,6 @@ import com.example.shopcenter.R;
 import com.example.shopcenter.databinding.RowPresentationBinding;
 import com.example.shopcenter.databinding.RowPresentationFirstPageBinding;
 import com.example.shopcenter.databinding.RowPresentationLastPageBinding;
-import com.example.shopcenter.viewmodel.LatestProductsViewModel;
 import com.example.shopcenter.viewmodel.StrategyProductViewModel;
 import com.squareup.picasso.Picasso;
 
@@ -95,6 +94,7 @@ public class PresentationProductAdapter extends RecyclerView.Adapter<RecyclerVie
 
             Picasso.get()
                     .load(mStrategyProductViewModel.getProductItems().get(position - 1).getImages()[0].getSrc())
+                    .resize(0,100)
                     .placeholder(R.drawable.ic_navigation_bottom_cart)
                     .into(mRowPresentationBinding.imageViewRowPresentation);
         }

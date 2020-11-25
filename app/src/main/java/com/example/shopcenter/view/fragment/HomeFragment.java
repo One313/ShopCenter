@@ -45,13 +45,14 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mViewModels = new StrategyProductViewModel[]{
-                new ViewModelProvider(requireActivity()).get(LatestProductsViewModel.class),
-                new ViewModelProvider(requireActivity()).get(MostVisitedProductsViewModel.class),
-                new ViewModelProvider(requireActivity()).get(TheBestProductsViewModel.class)};
+                new ViewModelProvider(this).get(LatestProductsViewModel.class),
+                new ViewModelProvider(this).get(MostVisitedProductsViewModel.class),
+                new ViewModelProvider(this).get(TheBestProductsViewModel.class)};
 
         for (int i = 0; i < mViewModels.length; i++) {
             int counter = i;
-            mViewModels[i].getProductItemsListLiveData().observe(this, productItems -> {
+            mViewModels[i].getProductItemsListLiveData()
+                    .observe(this, productItems -> {
 
                 mViewModels[counter].setProductItems(productItems);
 
@@ -61,7 +62,6 @@ public class HomeFragment extends Fragment {
                     mRecyclerViews[counter].setAdapter(mAdapters[counter]);
                 } else
                     mAdapters[counter].notifyDataSetChanged();
-
             });
 
             mViewModels[i].getProductItemSelectedMutableLiveData()

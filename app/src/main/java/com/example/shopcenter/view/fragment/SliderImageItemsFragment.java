@@ -61,6 +61,7 @@ public class SliderImageItemsFragment extends Fragment {
 
         Picasso.get()
                 .load(mProductDetailViewModel.getProductItemSubject().getImages()[mPosition].getSrc())
+                .resize(0, 200)
                 .placeholder(R.drawable.ic_navigation_bottom_cart)
                 .into(mSliderImageItemsBinding.imageViewSlider);
     }
