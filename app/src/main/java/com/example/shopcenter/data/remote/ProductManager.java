@@ -69,7 +69,7 @@ public class ProductManager {
     public void fetchItemsLatestProduct(int page) {
         Call<List<ProductItem>> call = RETROFIT_LIST_PRODUCT
                 .create(WoocommerceService.class)
-                .listItemsInPage(page, QUERY_OPTIONS);
+                .listItems(page, QUERY_OPTIONS);
 
         call.enqueue(new Callback<List<ProductItem>>() {
             @Override
@@ -88,7 +88,7 @@ public class ProductManager {
 
         Call<List<ProductItem>> call = RETROFIT_LIST_PRODUCT
                 .create(WoocommerceService.class)
-                .listItemsInPage(page, QUERY_POPULARITY);
+                .listItems(page, QUERY_POPULARITY);
 
         call.enqueue(new Callback<List<ProductItem>>() {
             @Override
@@ -107,7 +107,7 @@ public class ProductManager {
 
         Call<List<ProductItem>> call = RETROFIT_LIST_PRODUCT
                 .create(WoocommerceService.class)
-                .listItemsInPage(page, QUERY_RATING);
+                .listItems(page, QUERY_RATING);
 
         call.enqueue(new Callback<List<ProductItem>>() {
             @Override
