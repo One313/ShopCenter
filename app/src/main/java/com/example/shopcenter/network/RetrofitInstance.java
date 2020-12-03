@@ -1,5 +1,6 @@
 package com.example.shopcenter.network;
 
+import com.example.shopcenter.model.Category;
 import com.example.shopcenter.model.ProductItem;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -17,8 +18,11 @@ public class RetrofitInstance {
     private static final Type PRODUCT_TYPE = ProductItem.class;
     private static final Type PRODUCT_LIST_TYPE = new TypeToken<List<ProductItem>>() {
     }.getType();
+    private static final Type CATEGORY_LIST_TYPE = new TypeToken<List<Category>>() {
+    }.getType();
     private static final Object PRODUCT_TYPE_ADAPTER = new GetProductItemDeserializer();
     private static final Object PRODUCT_LIST_TYPE_ADAPTER = new GetProductItemsDeserializer();
+    private static final Object CATEGORY_LIST_TYPE_ADAPTER = new GetListCategoriesDeserializer();
 
     private static Retrofit getInstance(Type type, Object typeAdapter) {
 
@@ -41,4 +45,6 @@ public class RetrofitInstance {
             RETROFIT_PRODUCT = getInstance(PRODUCT_TYPE, PRODUCT_TYPE_ADAPTER);
     public static final Retrofit
             RETROFIT_LIST_PRODUCT = getInstance(PRODUCT_LIST_TYPE, PRODUCT_LIST_TYPE_ADAPTER);
+    public static final Retrofit
+            RETROFIT_LIST_CATEGORY = getInstance(CATEGORY_LIST_TYPE, CATEGORY_LIST_TYPE_ADAPTER);
 }

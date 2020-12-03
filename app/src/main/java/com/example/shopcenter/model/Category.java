@@ -39,7 +39,9 @@ public class Category {
         mImageCategory = imageCategory;
     }
 
-    public Category() {
+    public Category(int id, String name) {
+        mId = id;
+        mName = name;
     }
 
     public Category(int id, String name, int parent, ImageCategory imageCategory) {

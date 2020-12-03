@@ -7,8 +7,8 @@ public class ProductItem {
             mName,
             mDescription,
             mPrice;
-
     private ImageItem[] mImages;
+    private Category[] mCategories;
 
     public int getID() {
         return mID;
@@ -50,14 +50,20 @@ public class ProductItem {
         mImages = images;
     }
 
-    public ProductItem() {
+    public Category[] getCategories() {
+        return mCategories;
     }
 
-    public ProductItem(int ID, String name, String description, String price, ImageItem[] images) {
+    public void setCategories(Category[] categories) {
+        mCategories = categories;
+    }
+
+    public ProductItem(int ID, String name, String description, String price, ImageItem[] images, Category[] categories) {
         mID = ID;
         mName = name;
         mDescription = description;
         mPrice = price;
         mImages = images;
+        mCategories = categories;
     }
 }
