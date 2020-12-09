@@ -16,11 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.shopcenter.R;
 import com.example.shopcenter.adapter.ProductAdapter;
 import com.example.shopcenter.databinding.FragmentProductItemsBinding;
-import com.example.shopcenter.viewmodel.LatestProductsViewModel;
+import com.example.shopcenter.viewmodel.strategyproductviewmodel.LatestProductsViewModel;
 import com.example.shopcenter.viewmodel.ListProductsViewModel;
-import com.example.shopcenter.viewmodel.MostVisitedProductsViewModel;
-import com.example.shopcenter.viewmodel.StrategyProductViewModel;
-import com.example.shopcenter.viewmodel.TheBestProductsViewModel;
+import com.example.shopcenter.viewmodel.strategyproductviewmodel.MostVisitedProductsViewModel;
+import com.example.shopcenter.viewmodel.strategyproductviewmodel.StrategyProductViewModel;
+import com.example.shopcenter.viewmodel.strategyproductviewmodel.TheBestProductsViewModel;
 
 public class ProductItemsFragment extends Fragment {
 

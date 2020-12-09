@@ -12,7 +12,7 @@ import com.example.shopcenter.R;
 import com.example.shopcenter.databinding.RowPresentationBinding;
 import com.example.shopcenter.databinding.RowPresentationFirstPageBinding;
 import com.example.shopcenter.databinding.RowPresentationLastPageBinding;
-import com.example.shopcenter.viewmodel.StrategyProductViewModel;
+import com.example.shopcenter.viewmodel.strategyproductviewmodel.StrategyProductViewModel;
 import com.squareup.picasso.Picasso;
 
 public class PresentationProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

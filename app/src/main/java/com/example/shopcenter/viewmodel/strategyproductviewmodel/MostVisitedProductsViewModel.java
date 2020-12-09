@@ -1,4 +1,4 @@
-package com.example.shopcenter.viewmodel;
+package com.example.shopcenter.viewmodel.strategyproductviewmodel;
 
 import android.app.Application;
 

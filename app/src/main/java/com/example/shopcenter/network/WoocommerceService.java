@@ -15,17 +15,28 @@ import retrofit2.http.QueryMap;
 public interface WoocommerceService {
 
     @GET("products")
-    Call<List<ProductItem>> listItems(@Query("page") int page, @QueryMap Map<String, String> options);
+    Call<List<ProductItem>> listItems(
+            @Query("page") int page,
+            @QueryMap Map<String, String> options
+    );
 
     @GET("products/{id}")
-    Call<ProductItem> item(@Path("id") String id, @QueryMap Map<String, String> options);
+    Call<ProductItem> item(
+            @Path("id") int id,
+            @QueryMap Map<String, String> options
+    );
 
     @GET("products/categories")
-    Call<List<Category>> listCategories(@QueryMap Map<String, String> options);
+    Call<List<Category>> listCategories(
+            @Query("page") int page,
+            @Query("parent") int parent,
+            @QueryMap Map<String, String> options
+    );
 
-    @GET("products/categories")
-    Call<List<Category>> listSubCategories(@Query("parent") int parent, @QueryMap Map<String, String> options);
-
-    @GET("products/categories")
-    Call<List<ProductItem>> listItemsInCategories(@Query("parent") int parent, @Query("page") int page, @QueryMap Map<String, String> options);
+    @GET("products")
+    Call<List<ProductItem>> listItemsInCategories(
+            @Query("page") int page,
+            @Query("category") int categoryId,
+            @QueryMap Map<String, String> options
+    );
 }

@@ -7,7 +7,7 @@
 
         <variable
             name="strategyProductViewModel"
-            type="com.example.shopcenter.viewmodel.StrategyProductViewModel" />
+            type="com.example.shopcenter.viewmodel.strategyproductviewmodel.StrategyProductViewModel" />
 
         <variable
             name="position"

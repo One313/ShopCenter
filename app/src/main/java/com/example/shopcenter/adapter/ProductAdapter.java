@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopcenter.R;
 import com.example.shopcenter.databinding.RowProductItemBinding;
-import com.example.shopcenter.viewmodel.StrategyProductViewModel;
+import com.example.shopcenter.viewmodel.strategyproductviewmodel.StrategyProductViewModel;
 import com.squareup.picasso.Picasso;
 
 public class ProductAdapter extends RecyclerView
