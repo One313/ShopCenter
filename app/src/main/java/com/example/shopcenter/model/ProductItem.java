@@ -1,5 +1,7 @@
 package com.example.shopcenter.model;
 
+import java.util.Objects;
+
 public class ProductItem {
 
     private int mID;
@@ -65,5 +67,18 @@ public class ProductItem {
         mPrice = price;
         mImages = images;
         mCategories = categories;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductItem that = (ProductItem) o;
+        return mID == that.mID;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mID);
     }
 }

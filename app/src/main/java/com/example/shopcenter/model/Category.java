@@ -1,5 +1,7 @@
 package com.example.shopcenter.model;
 
+import java.util.Objects;
+
 public class Category {
 
     private int mId;
@@ -39,15 +41,31 @@ public class Category {
         mImageCategory = imageCategory;
     }
 
-    public Category(int id, String name) {
+    public Category(int id) {
         mId = id;
+    }
+
+    public Category(int id, String name) {
+        this(id);
         mName = name;
     }
 
     public Category(int id, String name, int parent, ImageCategory imageCategory) {
-        mId = id;
-        mName = name;
+        this(id, name);
         mParent = parent;
         mImageCategory = imageCategory;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Category category = (Category) o;
+        return mId == category.mId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mId);
     }
 }
