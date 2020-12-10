@@ -8,11 +8,11 @@
         android:layout_height="match_parent"
         tools:context=".view.fragment.CategoriesFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_categories_root"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/navigation_bottom_categories" />
+            android:layout_height="match_parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -45,7 +45,7 @@ public class ProductDetailFragment extends Fragment {
         }
 
         mProductDetailViewModel = new ViewModelProvider(requireActivity()).get(ProductDetailViewModel.class);
-        mProductDetailViewModel.getProductItemLiveData(String.valueOf(mProductId))
+        mProductDetailViewModel.getProductItemLiveData(mProductId)
                 .observe(this, productItem -> {
                     mProductDetailViewModel.setProductItemSubject(productItem);
 

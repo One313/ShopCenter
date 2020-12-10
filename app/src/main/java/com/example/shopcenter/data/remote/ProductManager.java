@@ -46,7 +46,7 @@ public class ProductManager {
         return mTheBestProductItemsLiveData;
     }
 
-    public MutableLiveData<ProductItem> getProductItemMutableLiveData(String productId) {
+    public MutableLiveData<ProductItem> getProductItemMutableLiveData(int productId) {
         Call<ProductItem> call = RETROFIT_PRODUCT.create(WoocommerceService.class)
                 .item(productId, QUERY_OPTIONS);
         call.enqueue(new Callback<ProductItem>() {

@@ -23,7 +23,7 @@ public class ProductDetailViewModel extends AndroidViewModel {
         mProductItemSubject = productItemSubject;
     }
 
-    public LiveData<ProductItem> getProductItemLiveData(String productId) {
+    public LiveData<ProductItem> getProductItemLiveData(int productId) {
         mProductItemLiveData = mProductManager.getProductItemMutableLiveData(productId);
         return mProductItemLiveData;
     }

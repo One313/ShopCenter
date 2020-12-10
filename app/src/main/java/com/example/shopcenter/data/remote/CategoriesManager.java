@@ -40,6 +40,7 @@ public class CategoriesManager {
     }
 
     public void fetchCategoriesLivaData(int page, int parent) {
+        mMapCategoriesLivaData.put(parent, new MutableLiveData<>());
         // TODO: fetch categories
     }
 
