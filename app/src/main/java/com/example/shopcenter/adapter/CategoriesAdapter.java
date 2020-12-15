@@ -11,13 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.shopcenter.R;
 import com.example.shopcenter.databinding.RowRecyclerViewCategoriesBinding;
 import com.example.shopcenter.viewmodel.CategoriesViewModel;
+import com.squareup.picasso.Picasso;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoryHolder> {
 
+    private int mParent;
     private LifecycleOwner mOwner;
     private CategoriesViewModel mCategoriesViewModel;
 
-    public CategoriesAdapter(LifecycleOwner owner, CategoriesViewModel categoriesViewModel) {
+    public CategoriesAdapter(int parent, LifecycleOwner owner,
+                             CategoriesViewModel categoriesViewModel) {
+        mParent = parent;
         mOwner = owner;
         mCategoriesViewModel = categoriesViewModel;
     }
@@ -40,7 +44,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
     @Override
     public int getItemCount() {
-        return mCategoriesViewModel.getListSize();
+        return mCategoriesViewModel.getListSize(mParent);
     }
 
     class CategoryHolder extends RecyclerView.ViewHolder {
@@ -50,6 +54,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
         public CategoryHolder(@NonNull RowRecyclerViewCategoriesBinding binding) {
             super(binding.getRoot());
             mCategoriesBinding = binding;
+            mCategoriesBinding.setParent(mParent);
             mCategoriesBinding.setLifecycleOwner(mOwner);
             mCategoriesBinding.setCategoriesViewModel(mCategoriesViewModel);
         }
@@ -58,7 +63,11 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
             mCategoriesBinding.setPosition(position);
             mCategoriesBinding.executePendingBindings();
 
-            // TODO: using picasso and ...
+            Picasso.get()
+                    .load(mCategoriesViewModel.getCategories(mParent).get(position).getImageCategory().getSrc())
+                    .resize(0, 100)
+                    .placeholder(R.drawable.ic_navigation_bottom_cart)
+                    .into(mCategoriesBinding.imageViewPhotoCategory);
         }
     }
 }

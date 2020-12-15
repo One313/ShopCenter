@@ -15,12 +15,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.shopcenter.R;
 import com.example.shopcenter.adapter.CategoriesInRootAdapter;
 import com.example.shopcenter.databinding.FragmentCategoriesBinding;
-import com.example.shopcenter.viewmodel.CategoriesInRootViewModel;
+import com.example.shopcenter.viewmodel.CategoriesViewModel;
 
 public class CategoriesFragment extends Fragment {
 
     private FragmentCategoriesBinding mCategoriesBinding;
-    private CategoriesInRootViewModel mCategoriesInRootViewModel;
+    private CategoriesViewModel mCategoriesViewModel;
     private CategoriesInRootAdapter mCategoriesInRootAdapter;
 
     public CategoriesFragment() {
@@ -38,8 +38,8 @@ public class CategoriesFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mCategoriesInRootViewModel = new ViewModelProvider(this)
-                .get(CategoriesInRootViewModel.class);
+        mCategoriesViewModel = new ViewModelProvider(this)
+                .get(CategoriesViewModel.class);
 
         registerObservers();
     }
@@ -63,25 +63,25 @@ public class CategoriesFragment extends Fragment {
     private void updateUI() {
         if (mCategoriesInRootAdapter == null) {
             mCategoriesInRootAdapter =
-                    new CategoriesInRootAdapter(this, mCategoriesInRootViewModel);
+                    new CategoriesInRootAdapter(0,this, mCategoriesViewModel);
             mCategoriesBinding.recyclerViewCategoriesRoot.setAdapter(mCategoriesInRootAdapter);
         } else mCategoriesInRootAdapter.notifyDataSetChanged();
     }
 
     private void registerObservers() {
 
-        mCategoriesInRootViewModel.getCategoriesLiveData()
+        mCategoriesViewModel.getCategoriesLiveData(1, 0)
                 .observe(this, categories -> {
 
-                    mCategoriesInRootViewModel.setCategories(categories);
+                    mCategoriesViewModel.setCategories(0, categories);
                     updateUI();
                 });
 
-        mCategoriesInRootViewModel.getCategorySelectedLiveData()
+        mCategoriesViewModel.getCategorySelectedLiveData()
                 .observe(this, category -> {
 
-                    mCategoriesInRootViewModel.setCategorySubject(category);
-                    // TODO: replace fragment
+                    mCategoriesViewModel.setCategorySubject(category);
+                    replace(CategoryItemsFragment.newInstance());
                 });
     }
 

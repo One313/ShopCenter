@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
-            name="categoriesInRootViewModel"
-            type="com.example.shopcenter.viewmodel.CategoriesInRootViewModel" />
+            name="categoriesViewModel"
+            type="com.example.shopcenter.viewmodel.CategoriesViewModel" />
+
+        <variable
+            name="parent"
+            type="Integer" />
 
         <variable
             name="position"
             type="Integer" />
     </data>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/text_view_categories_name_root"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="@{categoriesInRootViewModel.categories.get(position).name}"
+            android:text="@{categoriesViewModel.getCategories(parent).get(position).name}"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/recycler_view_categories_row"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -35,8 +41,9 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:onClick="@{()->categoriesInRootViewModel.onClickCategory(position)}"
+            android:onClick="@{()->categoriesViewModel.onClickCategory(parent,position)}"
             android:text="@string/see_all"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@+id/text_view_categories_name_root"
             app:layout_constraintEnd_toStartOf="@+id/text_view_categories_name_root"
             app:layout_constraintHorizontal_bias="0.5"
@@ -48,6 +55,7 @@
             android:id="@+id/recycler_view_categories_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
