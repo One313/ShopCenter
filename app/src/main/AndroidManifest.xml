@@ -12,7 +12,8 @@
         android:roundIcon="@drawable/ic_grouping_fill_icon_background"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.shopcenter.view.activity.ProductDetailActivity"></activity>
+        <activity android:name="com.example.shopcenter.view.activity.ProductListActivity"></activity>
+        <activity android:name="com.example.shopcenter.view.activity.ProductDetailActivity" />
         <activity android:name="com.example.shopcenter.view.activity.BaseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -55,9 +55,11 @@ public class Product {
 
     public String getPrice() {
         String number = mPrice;
+        if (!number.equals("")){
         double amount = Double.parseDouble(number);
         DecimalFormat formatter = new DecimalFormat("#,###");
         return formatter.format(amount);
+        }else return "0";
     }
 
     public String getPriceToman(){

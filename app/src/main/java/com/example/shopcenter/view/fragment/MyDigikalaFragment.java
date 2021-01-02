@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 
 import com.example.shopcenter.R;
 
-public class MyShopCenterFragment extends Fragment {
+public class MyDigikalaFragment extends Fragment {
 
 
-    public static MyShopCenterFragment newInstance() {
-        MyShopCenterFragment fragment = new MyShopCenterFragment();
+    public static MyDigikalaFragment newInstance() {
+        MyDigikalaFragment fragment = new MyDigikalaFragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
@@ -31,6 +31,6 @@ public class MyShopCenterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_shop_center, container, false);
+        return inflater.inflate(R.layout.fragment_my_digikala, container, false);
     }
 }

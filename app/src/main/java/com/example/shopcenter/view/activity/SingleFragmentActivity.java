@@ -14,7 +14,7 @@ import com.example.shopcenter.R;
 import com.example.shopcenter.databinding.ActivitySingleFragmentBinding;
 import com.example.shopcenter.view.fragment.CategoryFragment;
 import com.example.shopcenter.view.fragment.HomeFragment;
-import com.example.shopcenter.view.fragment.MyShopCenterFragment;
+import com.example.shopcenter.view.fragment.MyDigikalaFragment;
 import com.example.shopcenter.view.fragment.ShoppingCartFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -59,7 +59,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
                             fragment = ShoppingCartFragment.newInstance();
                             break;
                         case R.id.my_dijikala_nav:
-                            fragment =  MyShopCenterFragment.newInstance();
+                            fragment =  MyDigikalaFragment.newInstance();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction()
