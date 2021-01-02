@@ -1,6 +1,5 @@
 package com.example.digikala.view.fragment;
 
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -62,9 +61,9 @@ public class ProductDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_product_detail, container, false);
-        Typeface typeFace = Typeface.createFromAsset(mViewModel.getApplication().getAssets(), "fonts/Dirooz-FD.ttf");
-        mBinding.textViewProductName.setTypeface(typeFace);
-        mBinding.textViewProductDescription.setTypeface(typeFace);
+//        Typeface typeFace = Typeface.createFromAsset(mViewModel.getApplication().getAssets(), "font/Dirooz-FD.ttf");
+//        mBinding.textViewProductName.setTypeface(typeFace);
+//        mBinding.textViewProductDescription.setTypeface(typeFace);
         mBinding.buttonAddToBasket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
