@@ -7,7 +7,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="news">جدیدترین ها</string>
     <string name="see_more">مشاهده همه</string>
-    <string name="login_sentence">برای ورود و با ثبت نام در شاپ  سنتر پست الکترونیکی خود را وارد نمایید</string>
+    <string name="login_sentence">برای ورود و با ثبت نام در شاپ سنتر پست الکترونیکی خود را وارد نمایید</string>
     <string name="digi_login_rules">با ورود یا ثبت نام در شاپ سنتر شما شرایط و قوانین استفاده از سرویس های سایت شاپ سنتر و قوانین حریم خصوصی آن را می پذیرید.</string>
     <string name="most_view">پر بازدیدترین ها</string>
     <string name="most_rate">بیشترین امتیاز</string>
@@ -36,4 +36,5 @@
     <string name="address_one">آدرس اول</string>
     <string name="post_code">کد پستی</string>
     <string name="off">خاموش</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAdfE8An_g7e4bMMVd0ToVIKH2laZedI2o</string>
 </resources>
