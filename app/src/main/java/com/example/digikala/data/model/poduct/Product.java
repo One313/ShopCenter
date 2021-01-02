@@ -1,5 +1,7 @@
 package com.example.digikala.data.model.poduct;
 
+import android.util.Log;
+
 import com.example.digikala.data.model.ProductCategory;
 import com.example.digikala.data.model.ProductImage;
 

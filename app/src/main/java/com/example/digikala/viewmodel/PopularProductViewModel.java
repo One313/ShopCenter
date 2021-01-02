@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 
 import com.example.digikala.data.repository.ProductRepository;
+import com.example.digikala.utillity.ListType;
 
 public class PopularProductViewModel extends ProductStrategyViewModel {
 
