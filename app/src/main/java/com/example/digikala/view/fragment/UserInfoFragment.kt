@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.digikala.databinding.FragmentUserInfoBinding
 import com.example.digikala.viewmodel.CustomerViewModel
 
@@ -26,6 +27,10 @@ class UserInfoFragment : Fragment() {
         if (c != null) {
             binding.textViewUsetName.text = c.mFistName+" "+ c.mLastName
             binding.textViewUserEmail.text = c.mEmail
+        }
+        binding.imageViewNotifSetting.setOnClickListener {
+            Navigation.findNavController(binding.root)
+                    .navigate(UserInfoFragmentDirections.actionUserInfoFragmentToNotificationSettingFragment())
         }
         return binding.root
     }
