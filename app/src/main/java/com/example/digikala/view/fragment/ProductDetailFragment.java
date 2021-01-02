@@ -65,7 +65,12 @@ public class ProductDetailFragment extends Fragment {
         Typeface typeFace = Typeface.createFromAsset(mViewModel.getApplication().getAssets(), "fonts/Dirooz-FD.ttf");
         mBinding.textViewProductName.setTypeface(typeFace);
         mBinding.textViewProductDescription.setTypeface(typeFace);
-
+        mBinding.buttonAddToBasket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewModel.addProductToCart(mId);
+            }
+        });
         mBinding.setViewModel(mViewModel);
         mBinding.setLifecycleOwner(this);
         return mBinding.getRoot();

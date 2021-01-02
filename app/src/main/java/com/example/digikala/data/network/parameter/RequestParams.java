@@ -6,8 +6,8 @@ import java.util.Map;
 public class RequestParams {
     public static final String BASE_PATH_PRODUCT = "https://woocommerce.maktabsharif.ir/wp-json/wc/v3/products/";
     public static final String BASE_PATH_CATEGORY = "https://woocommerce.maktabsharif.ir/wp-json/wc/v3/products/categories/";
-    public static final String CONSUMER_KEY = "ck_b5f203e4089387857d28708a7eb9cdaf090f4237";
-    public static final String CONSUMER_SECRET = "cs_ea4c141782826fdeaac413d0b0c9adbdc2f916f2";
+    public static final String CONSUMER_KEY = "ck_23cd258c7b39b4820c4014c9d6be6448bb4f2264";
+    public static final String CONSUMER_SECRET = "cs_1d3857709fc7b5c874fcec577cf601f9f00600cc";
     public static final String POPULARITY = "popularity";
     public static final String RATING = "rating";
     public static final int DIGITAL_ID = 52;
