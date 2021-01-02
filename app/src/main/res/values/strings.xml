@@ -1,15 +1,21 @@
 <resources>
     <string name="app_name">ShopCenter</string>
-    <string name="navigation_bottom_my_shop">My Shop</string>
-    <string name="navigation_bottom_cart">Cart</string>
-    <string name="navigation_bottom_categories">Categories</string>
-    <string name="navigation_bottom_home">Home</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="my_shop_center">شاپ سنتر من</string>
+    <string name="home">خانه</string>
+    <string name="grouping">دسته بندی ها</string>
+    <string name="shop_basket">سبد خرید</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <string name="message_latest_products">Latest Products</string>
-    <string name="message_the_most_visited_products">The most visited products</string>
-    <string name="message_the_best_products">The best products</string>
-    <string name="see_all">See All</string>
+    <string name="news">جدیدترین ها</string>
+    <string name="see_more">مشاهده همه</string>
+    <string name="most_view">پر بازدیدترین ها</string>
+    <string name="most_rate">بیشترین امتیاز</string>
+    <string name="about_product">درباره کالا</string>
+    <string name="add_to_basket">افزودن به سبد خرید</string>
+    <string name="toman">تومان</string>
+    <string name="Digital">دیجیتال</string>
+    <string name="Clothing">مد و پوشاک</string>
+    <string name="SpecialSale">فروش ویژه</string>
+    <string name="SuperMarket">سوپرمارکت</string>
+    <string name="BookArt">کتاب و هنر</string>
+    <string name="Health">بهداشت</string>
 </resources>

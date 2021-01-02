@@ -1,38 +1,39 @@
 package com.example.shopcenter.view.fragment;
 
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-
 import com.example.shopcenter.R;
-import com.example.shopcenter.adapter.SliderImageItemsAdapter;
+import com.example.shopcenter.adapter.SliderAdapter;
+import com.example.shopcenter.data.model.poduct.Product;
 import com.example.shopcenter.databinding.FragmentProductDetailBinding;
-import com.example.shopcenter.viewmodel.ProductDetailViewModel;
+import com.example.shopcenter.viewmodel.DetailFragmentViewModel;
 
 public class ProductDetailFragment extends Fragment {
 
-    public static final String ARG_PRODUCT_ID = "com.example.shopcenter.view.fragment.productId";
-    private FragmentProductDetailBinding mProductDetailBinding;
-    private ProductDetailViewModel mProductDetailViewModel;
-    private SliderImageItemsAdapter mAdapter;
 
-    private int mProductId;
+    public static final String BUNDLE_KEY_PRODUCT_ID = "productID";
+    private DetailFragmentViewModel mViewModel;
+    private FragmentProductDetailBinding mBinding;
+    private Product mProduct;
+    private SliderAdapter mSliderAdapter;
+    private int mId;
 
-    public ProductDetailFragment() {
-        // Required empty public constructor
-    }
-
-    public static ProductDetailFragment newInstance(int productId) {
+    public static ProductDetailFragment newInstance(int id) {
         ProductDetailFragment fragment = new ProductDetailFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_PRODUCT_ID, productId);
+        args.putInt(BUNDLE_KEY_PRODUCT_ID , id);
         fragment.setArguments(args);
         return fragment;
     }
@@ -40,32 +41,46 @@ public class ProductDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mProductId = getArguments().getInt(ARG_PRODUCT_ID);
-        }
+        mViewModel = new ViewModelProvider(requireActivity()).get(DetailFragmentViewModel.class);
 
-        mProductDetailViewModel = new ViewModelProvider(requireActivity()).get(ProductDetailViewModel.class);
-        mProductDetailViewModel.getProductItemLiveData(mProductId)
-                .observe(this, productItem -> {
-                    mProductDetailViewModel.setProductItemSubject(productItem);
 
-                    mProductDetailBinding.setProductDetailViewModel(mProductDetailViewModel);
-
-                    mAdapter = new SliderImageItemsAdapter(this, mProductDetailViewModel);
-                    mProductDetailBinding.viewPagerSlider.setAdapter(mAdapter);
-                });
+        mId = getArguments().getInt(BUNDLE_KEY_PRODUCT_ID);
+        mViewModel.fetchProduct(String.valueOf(mId));
+        mViewModel.getProductLiveData().observe(this, new Observer<Product>() {
+            @Override
+            public void onChanged(Product product) {
+                mViewModel.setProductSubjectLiveData(product);
+                mBinding.productSlider.setSliderAdapter(
+                        new SliderAdapter(getContext() ,
+                                mViewModel.getProductSubjectLiveData().getValue()));
+                formatTexts();
+            }
+        });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mProductDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_product_detail,
-                container, false);
-        return mProductDetailBinding.getRoot();
+        // Inflate the layout for this fragment
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_product_detail, container, false);
+        Typeface typeFace = Typeface.createFromAsset(mViewModel.getApplication().getAssets(), "fonts/Dirooz-FD.ttf");
+        mBinding.textViewProductName.setTypeface(typeFace);
+        mBinding.textViewProductDescription.setTypeface(typeFace);
+
+        mBinding.setViewModel(mViewModel);
+        mBinding.setLifecycleOwner(this);
+        return mBinding.getRoot();
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    private void formatTexts() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            mBinding.textViewProductDescription.setText(
+                    Html.fromHtml(
+                            mViewModel.getProductSubjectLiveData().getValue().getDescription(),
+                            Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            mBinding.textViewProductDescription.setText(
+                    Html.fromHtml(mViewModel.getProductSubjectLiveData().getValue().getDescription()));
+        }
     }
 }
