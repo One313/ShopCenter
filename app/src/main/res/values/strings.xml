@@ -7,8 +7,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="news">جدیدترین ها</string>
     <string name="see_more">مشاهده همه</string>
-    <string name="login_sentence">برای ورود و با ثبت نام در دیجی کالا پست الکترونیکی خود را وارد نمایید</string>
-    <string name="digi_login_rules">با ورود یا ثبت نام در دیجی‌کالا شما شرایط و قوانین استفاده از سرویس های سایت دیجی‌کالا و قوانین حریم خصوصی آن را می پذیرید.</string>
+    <string name="login_sentence">برای ورود و با ثبت نام در شاپ سنتر پست الکترونیکی خود را وارد نمایید</string>
+    <string name="digi_login_rules">با ورود یا ثبت نام در شاپ سنتر شما شرایط و قوانین استفاده از سرویس های سایت شاپ سنتر و قوانین حریم خصوصی آن را می پذیرید.</string>
     <string name="most_view">پر بازدیدترین ها</string>
     <string name="most_rate">بیشترین امتیاز</string>
     <string name="about_product">درباره کالا</string>
@@ -24,4 +24,15 @@
     <string name="Search_in_shop_center">سرچ در شاپ سنتر</string>
     <string name="cart_product">سبد خرید</string>
     <string name="no_net">اینترنت در دسترس نیست... دوباره تلاش کنید</string>
+    <string name="name">نام</string>
+    <string name="last_name">نام خانوادگی</string>
+    <string name="password">رمز عبور</string>
+    <string name="personal_information">اطلاعات شخصی</string>
+    <string name="txt_continue">ادامه</string>
+    <string name="shipping_info">اطلاعات ارسال کالا</string>
+    <string name="txt_country">کشور</string>
+    <string name="txt_city">شهر</string>
+    <string name="state">استان</string>
+    <string name="address_one">آدرس اول</string>
+    <string name="post_code">کد پستی</string>
 </resources>

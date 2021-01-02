@@ -39,12 +39,8 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout_title"
-            android:layout_width="0dp"
-            android:layout_height="66dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            style="@style/textInputLayout_my_digikala"
             android:background="@drawable/edit_text_back"
-            android:textColorHint="#4C4A4A"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -55,16 +51,9 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_persian"
-                android:layout_width="match_parent"
-                android:layout_height="59dp"
-                android:gravity="bottom"
+               style="@style/textInputEditText_my_digikala"
                 android:hint="پست الکترونیکی خود را وارد کنید"
-                android:inputType="text"
-                android:maxLines="1"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textColor="#000000"
-                android:textColorLink="#F5001D" />
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -85,10 +74,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_input_layout_title" />
 
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/progressBar_loading_fragment"
+            style="@style/AVLoadingIndicatorView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:visibility="invisible"
+            app:indicatorColor="#FF1744"
+            app:indicatorName="BallPulseIndicator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button"
+            tools:ignore="MissingConstraints" />
+
         <TextView
+            android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="64dp"
             android:fontFamily="@font/dirooz_fd"
             android:gravity="center"
             android:padding="16dp"
