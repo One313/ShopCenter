@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.shopcenter">
+    package="com.example.digikala">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,9 +12,7 @@
         android:roundIcon="@drawable/ic_grouping_fill_icon_background"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.shopcenter.view.activity.ProductListActivity"></activity>
-        <activity android:name="com.example.shopcenter.view.activity.ProductDetailActivity" />
-        <activity android:name="com.example.shopcenter.view.activity.BaseActivity">
+        <activity android:name="com.example.digikala.view.activity.BaseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

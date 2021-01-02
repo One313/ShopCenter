@@ -7,13 +7,13 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.shopcenter.viewmodel.ProductStrategyViewModel" />
+            type="com.example.digikala.viewmodel.ProductStrategyViewModel" />
         <variable
             name="position"
             type="Integer" />
         <variable
             name="listType"
-            type="com.example.shopcenter.utillity.ListType" />
+            type="com.example.digikala.utillity.ListType" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
