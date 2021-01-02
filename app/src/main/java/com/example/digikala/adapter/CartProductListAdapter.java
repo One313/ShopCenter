@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -15,6 +16,7 @@ import com.example.digikala.R;
 import com.example.digikala.data.database.entity.CartProduct;
 import com.example.digikala.data.model.poduct.Product;
 import com.example.digikala.databinding.CartProductItemBinding;
+import com.example.digikala.utillity.DeleteProductHelper;
 import com.example.digikala.viewmodel.CartFragmentViewModel;
 
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ public class CartProductListAdapter extends RecyclerView.Adapter<CartProductList
     private LiveData<List<Product>> mProductLiveData;
     private LifecycleOwner mOwner;
     private CartFragmentViewModel mViewModel;
-    public CartProductListAdapter(CartFragmentViewModel viewModel, LifecycleOwner owner) {
+    public CartProductListAdapter(CartFragmentViewModel viewModel , LifecycleOwner owner) {
         mViewModel = viewModel;
         mCartProductList = viewModel.getCartProducts();
         mOwner = owner;
@@ -51,7 +53,7 @@ public class CartProductListAdapter extends RecyclerView.Adapter<CartProductList
 
     @Override
     public int getItemCount() {
-        return mCartProductList.size();
+        return mViewModel.getCartProducts().size();
     }
 
     class CartProductHolder extends RecyclerView.ViewHolder {
@@ -60,7 +62,7 @@ public class CartProductListAdapter extends RecyclerView.Adapter<CartProductList
         public CartProductHolder(CartProductItemBinding cartProductItemBinding) {
             super(cartProductItemBinding.getRoot());
             mBinding = cartProductItemBinding;
-            //mBinding.setViewModel(mViewModel);
+            mBinding.setViewModel(mViewModel);
 
             //set font
             Typeface typeFace = Typeface.createFromAsset(mViewModel.getApplication().getAssets(), "fonts/Dirooz-FD.ttf");
@@ -71,19 +73,27 @@ public class CartProductListAdapter extends RecyclerView.Adapter<CartProductList
             mBinding.textView5.setTypeface(typeFace);
             mBinding.textViewPrice.setTypeface(typeFace);
             mBinding.textViewProductCount.setTypeface(typeFace);
+
+            mViewModel.getDeleteProductHelperMutableLiveData().observe(mOwner, new Observer<DeleteProductHelper>() {
+                @Override
+                public void onChanged(DeleteProductHelper deleteProductHelper) {
+                    if (deleteProductHelper== DeleteProductHelper.SUBMISSION){
+                        mBinding.imageViewSubtrack.setImageResource(R.drawable.ic_subtrack_product);
+                    }else mBinding.imageViewSubtrack.setImageResource(R.drawable.ic_delete_product);
+                }
+            });
         }
 
         public void onBind2(int position) {
-//            mBinding.setPosition(position);
-//            mBinding.executePendingBindings();
+            mBinding.setPosition(position);
+            mBinding.executePendingBindings();
 
             String imageURL = null;
             imageURL =mViewModel.getProducts().getValue().get(position).getImages().get(0).getImageURL();
             Glide.with(mViewModel.getApplication()).load(imageURL).into(mBinding.imageViewProduct);
-
-            mBinding.textViewPrice.setText(mViewModel.getProduct(position).getPriceToman());
-            mBinding.textViewProductCount.setText(String.valueOf(mViewModel.getCartProduct(position).getCount()));
-            mBinding.textViewProductName.setText(mViewModel.getProduct(position).getName());
+            //mBinding.textViewPrice.setText(mViewModel.getProduct(position).getPriceToman());
+            //mBinding.textViewProductCount.setText(String.valueOf(mViewModel.getCartProduct(position).getCount()));
+            //mBinding.textViewProductName.setText(mViewModel.getProduct(position).getName());
         }
     }
 
