@@ -16,6 +16,7 @@ import com.example.shopcenter.R;
 import com.example.shopcenter.adapter.SubCategoryListAdapter;
 import com.example.shopcenter.data.model.category.Category;
 import com.example.shopcenter.databinding.FragmentCategoryBinding;
+import com.example.shopcenter.view.activity.ProductListActivity;
 import com.example.shopcenter.utillity.HeadCategory;
 import com.example.shopcenter.viewmodel.CategoryFragmentViewModel;
 
@@ -140,7 +141,7 @@ public class CategoryFragment extends Fragment {
         mViewModel.getCategorySubject().observe(this, new Observer<Category>() {
             @Override
             public void onChanged(Category category) {
-
+                startActivity(ProductListActivity.newIntent(getContext() , category.getId() , null));
             }
         });
     }
