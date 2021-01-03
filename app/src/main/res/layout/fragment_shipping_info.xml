@@ -24,7 +24,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout_country"
-            style="@style/textInputLayout_my_digikala"
+            style="@style/textInputLayout_my_shop_center"
             android:layout_marginTop="32dp"
             android:background="@drawable/edit_text_back"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,13 +35,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_country"
-                style="@style/textInputEditText_my_digikala"
+                style="@style/textInputEditText_my_shop_center"
                 android:hint="@string/txt_country" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout_city"
-            style="@style/textInputLayout_my_digikala"
+            style="@style/textInputLayout_my_shop_center"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_text_back"
             app:layout_constraintEnd_toEndOf="parent"
@@ -52,13 +52,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_city"
-                style="@style/textInputEditText_my_digikala"
+                style="@style/textInputEditText_my_shop_center"
                 android:hint="@string/txt_city" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout_state"
-            style="@style/textInputLayout_my_digikala"
+            style="@style/textInputLayout_my_shop_center"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_text_back"
             app:layout_constraintEnd_toEndOf="parent"
@@ -69,14 +69,14 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_state"
-                style="@style/textInputEditText_my_digikala"
+                style="@style/textInputEditText_my_shop_center"
                 android:hint="@string/state"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout_address_one"
-            style="@style/textInputLayout_my_digikala"
+            style="@style/textInputLayout_my_shop_center"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_text_back"
             app:layout_constraintEnd_toEndOf="parent"
@@ -87,14 +87,14 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_address_one"
-                style="@style/textInputEditText_my_digikala"
+                style="@style/textInputEditText_my_shop_center"
                 android:hint="@string/address_one"
                  />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout_post_code"
-            style="@style/textInputLayout_my_digikala"
+            style="@style/textInputLayout_my_shop_center"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_text_back"
             app:layout_constraintEnd_toEndOf="parent"
@@ -105,7 +105,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_post_code"
-                style="@style/textInputEditText_my_digikala"
+                style="@style/textInputEditText_my_shop_center"
                 android:hint="@string/post_code"/>
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -47,8 +47,7 @@
                 android:fontFamily="@font/far_yekan"
                 android:gravity="center"
                 android:textColor="#040404"
-                android:textSize="20sp"
-                tools:text="مجید محرمی" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textView_user_email"
@@ -58,8 +57,7 @@
                 android:fontFamily="@font/far_zar"
                 android:gravity="center"
                 android:textColor="#5C5B5B"
-                android:textSize="14sp"
-                tools:text="majid.moharami79@gmail.com" />
+                android:textSize="14sp" />
         </LinearLayout>
 
 

@@ -1,17 +1,15 @@
 package com.example.digikala.view.fragment;
 
-import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
-import android.text.Html;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.digikala.R;
 import com.example.digikala.adapter.SliderAdapter;
@@ -61,9 +59,6 @@ public class ProductDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_product_detail, container, false);
-//        Typeface typeFace = Typeface.createFromAsset(mViewModel.getApplication().getAssets(), "font/Dirooz-FD.ttf");
-//        mBinding.textViewProductName.setTypeface(typeFace);
-//        mBinding.textViewProductDescription.setTypeface(typeFace);
         mBinding.buttonAddToBasket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,14 +73,9 @@ public class ProductDetailFragment extends Fragment {
 
 
     private void formatTexts() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            mBinding.textViewProductDescription.setText(
-                    Html.fromHtml(
-                            mViewModel.getProductSubjectLiveData().getValue().getDescription(),
-                            Html.FROM_HTML_MODE_COMPACT));
-        } else {
-            mBinding.textViewProductDescription.setText(
-                    Html.fromHtml(mViewModel.getProductSubjectLiveData().getValue().getDescription()));
-        }
+        mBinding.textViewProductDescription.setText(
+                Html.fromHtml(
+                        mViewModel.getProductSubjectLiveData().getValue().getDescription(),
+                        Html.FROM_HTML_MODE_COMPACT));
     }
 }

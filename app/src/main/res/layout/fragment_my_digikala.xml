@@ -39,7 +39,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout_title"
-            style="@style/textInputLayout_my_digikala"
+            style="@style/textInputLayout_my_shop_center"
             android:background="@drawable/edit_text_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_persian"
-               style="@style/textInputEditText_my_digikala"
+               style="@style/textInputEditText_my_shop_center"
                 android:hint="پست الکترونیکی خود را وارد کنید"
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -65,7 +65,7 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/btn_add_basket_background"
             android:fontFamily="@font/dirooz_fd"
-            android:text="ورود به دیجیکالا"
+            android:text="@string/enter_in_shop_center"
             android:textColor="#FFFCFC"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -82,7 +82,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:visibility="invisible"
-            app:indicatorColor="#FF1744"
+            app:indicatorColor="#3F51B5"
             app:indicatorName="BallPulseIndicator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -99,7 +99,7 @@
             android:gravity="center"
             android:padding="16dp"
             android:text="@string/digi_login_rules"
-            android:textColor="@color/digikala_gray"
+            android:textColor="@color/shop_center_gray"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

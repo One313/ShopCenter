@@ -24,7 +24,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout_first_name"
-            style="@style/textInputLayout_my_digikala"
+            style="@style/textInputLayout_my_shop_center"
             android:layout_marginTop="32dp"
             android:background="@drawable/edit_text_back"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,13 +35,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_first_name"
-                style="@style/textInputEditText_my_digikala"
+                style="@style/textInputEditText_my_shop_center"
                 android:hint="@string/name" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout_last_name"
-            style="@style/textInputLayout_my_digikala"
+            style="@style/textInputLayout_my_shop_center"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_text_back"
             app:layout_constraintEnd_toEndOf="parent"
@@ -52,13 +52,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_last_name"
-                style="@style/textInputEditText_my_digikala"
+                style="@style/textInputEditText_my_shop_center"
                 android:hint="@string/last_name" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout_password"
-            style="@style/textInputLayout_my_digikala"
+            style="@style/textInputLayout_my_shop_center"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_text_back"
             app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +69,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_password"
-                style="@style/textInputEditText_my_digikala"
+                style="@style/textInputEditText_my_shop_center"
                 android:hint="@string/password"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>

@@ -119,7 +119,7 @@
                         android:id="@+id/news_product_recycler"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#DD0451"
+                        android:background="#3F51B5"
                         android:orientation="vertical">
 
                     </androidx.recyclerview.widget.RecyclerView>
@@ -147,7 +147,7 @@
                         android:id="@+id/most_review_recycler"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#61CF04"
+                        android:background="#3F51B5"
                         android:orientation="horizontal">
 
                     </androidx.recyclerview.widget.RecyclerView>
@@ -175,7 +175,7 @@
                         android:id="@+id/most_rate_recycler"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#1F5CC3"
+                        android:background="#3F51B5"
                         android:orientation="horizontal" />
                 </LinearLayout>
             </ScrollView>

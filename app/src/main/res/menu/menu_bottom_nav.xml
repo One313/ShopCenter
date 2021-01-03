@@ -8,22 +8,22 @@
 
     <item
         android:id="@+id/nav_homeFragment"
-        android:icon="@drawable/home_selector"
+        android:icon="@drawable/ic_navigation_bottom_home_bn"
         android:title="@string/home"
         />
     <item
         android:id="@+id/nav_categoryFragment"
-        android:icon="@drawable/grouping_selector"
+        android:icon="@drawable/ic_navigation_bottom_catogories_bn"
         android:title="@string/grouping"
         />
     <item
         android:id="@+id/fragment_basket"
-        android:icon="@drawable/basket_selector"
+        android:icon="@drawable/ic_navigation_bottom_cart_bn"
         android:title="@string/shop_basket" />
 
     <item
         android:id="@+id/choosingCustomerFragment"
-        android:icon="@drawable/my_digikala_selector"
+        android:icon="@drawable/ic_navigation_bottom_my_shop_bn"
         android:title="@string/my_shop_center"
         />
 </menu>

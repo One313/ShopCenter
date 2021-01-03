@@ -1,7 +1,6 @@
 package com.example.digikala.view.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,12 +54,11 @@ public class CategoryFragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mBinding = DataBindingUtil.inflate(inflater , R.layout.fragment_category , container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_category, container, false);
         setRecyclerLayout(mBinding.subDigitalRecycler);
         setRecyclerLayout(mBinding.subHealthRecycler);
         setRecyclerLayout(mBinding.subSpecialSaleRecycler);
@@ -79,47 +77,56 @@ public class CategoryFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (!isFirst){
+        if (!isFirst) {
             mBinding.categoryRoot.setVisibility(View.VISIBLE);
             mBinding.progressBarLoadingFragment.setVisibility(View.GONE);
-            setAdapter(mDigitalAdapter , HeadCategory.DIGITAL , mBinding.subDigitalRecycler);
-            setAdapter(mClothingAdapter , HeadCategory.FASHION_CLOTHING , mBinding.subClothingRecycler);
-            setAdapter(mArtAdapter , HeadCategory.BOOK_ART , mBinding.subBookArtRecycler);
-            setAdapter(mHealthAdapter , HeadCategory.HEALTH , mBinding.subHealthRecycler);
-            setAdapter(mMarketAdapter , HeadCategory.SUPER_MARKET , mBinding.subSuperMarketRecycler);
-            setAdapter(mSpecialSaleAdapter , HeadCategory.SPECIAL_SALE , mBinding.subSpecialSaleRecycler);
+            setAdapters();
         }
     }
 
-    public void setRecyclerLayout(RecyclerView recyclerView){
+    public void setRecyclerLayout(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(getContext(),
                         RecyclerView.HORIZONTAL,
                         true));
     }
 
-    private void setAdapter(SubCategoryListAdapter adapter , HeadCategory headCategory,RecyclerView recyclerView){
-        adapter = new SubCategoryListAdapter(headCategory , mViewModel);
+    private void setAdapter(SubCategoryListAdapter adapter, HeadCategory headCategory, RecyclerView recyclerView) {
+        adapter = new SubCategoryListAdapter(headCategory, mViewModel);
         recyclerView.setAdapter(adapter);
+    }
+
+    private void setAdapters() {
+        mDigitalAdapter = new SubCategoryListAdapter(HeadCategory.DIGITAL, mViewModel);
+        mBinding.subDigitalRecycler.setAdapter(mDigitalAdapter);
+        mHealthAdapter = new SubCategoryListAdapter(HeadCategory.HEALTH, mViewModel);
+        mBinding.subHealthRecycler.setAdapter(mHealthAdapter);
+        mArtAdapter = new SubCategoryListAdapter(HeadCategory.BOOK_ART, mViewModel);
+        mBinding.subBookArtRecycler.setAdapter(mArtAdapter);
+        mMarketAdapter = new SubCategoryListAdapter(HeadCategory.SUPER_MARKET, mViewModel);
+        mBinding.subSuperMarketRecycler.setAdapter(mMarketAdapter);
+        mClothingAdapter = new SubCategoryListAdapter(HeadCategory.FASHION_CLOTHING, mViewModel);
+        mBinding.subClothingRecycler.setAdapter(mClothingAdapter);
+        mSpecialSaleAdapter = new SubCategoryListAdapter(HeadCategory.SPECIAL_SALE, mViewModel);
+        mBinding.subSpecialSaleRecycler.setAdapter(mSpecialSaleAdapter);
     }
 
     private void observers() {
         mViewModel.getSubDigitalLiveData().observe(this, new Observer<List<Category>>() {
             @Override
             public void onChanged(List<Category> categories) {
-               setAdapter(mDigitalAdapter , HeadCategory.DIGITAL , mBinding.subDigitalRecycler);
-                if (mViewModel.getSubDigitalLiveData().getValue().size()==0){
+                setAdapter(mDigitalAdapter, HeadCategory.DIGITAL, mBinding.subDigitalRecycler);
+                if (mViewModel.getSubDigitalLiveData().getValue().size() == 0) {
                     mBinding.textViewEmptyDigital.setVisibility(View.VISIBLE);
                 }
-
             }
         });
 
         mViewModel.getSubClothingLiveData().observe(this, new Observer<List<Category>>() {
             @Override
             public void onChanged(List<Category> categories) {
-               setAdapter(mClothingAdapter , HeadCategory.FASHION_CLOTHING , mBinding.subClothingRecycler);
-                if (mViewModel.getSubClothingLiveData().getValue().size()==0){
+                setAdapter(mClothingAdapter, HeadCategory.FASHION_CLOTHING, mBinding.subClothingRecycler);
+                if (mViewModel.getSubClothingLiveData().getValue().size() == 0) {
                     mBinding.textViewEmptyClothing.setVisibility(View.VISIBLE);
                 }
             }
@@ -128,8 +135,8 @@ public class CategoryFragment extends Fragment {
         mViewModel.getSubArtLiveData().observe(this, new Observer<List<Category>>() {
             @Override
             public void onChanged(List<Category> categories) {
-                setAdapter(mArtAdapter , HeadCategory.BOOK_ART , mBinding.subBookArtRecycler);
-                if (mViewModel.getSubArtLiveData().getValue().size()==0){
+                setAdapter(mArtAdapter, HeadCategory.BOOK_ART, mBinding.subBookArtRecycler);
+                if (mViewModel.getSubArtLiveData().getValue().size() == 0) {
                     mBinding.textViewEmptyArt.setVisibility(View.VISIBLE);
                 }
             }
@@ -138,8 +145,8 @@ public class CategoryFragment extends Fragment {
         mViewModel.getSubHealthLiveData().observe(this, new Observer<List<Category>>() {
             @Override
             public void onChanged(List<Category> categories) {
-                setAdapter(mHealthAdapter , HeadCategory.HEALTH , mBinding.subHealthRecycler);
-                if (mViewModel.getSubHealthLiveData().getValue().size()==0){
+                setAdapter(mHealthAdapter, HeadCategory.HEALTH, mBinding.subHealthRecycler);
+                if (mViewModel.getSubHealthLiveData().getValue().size() == 0) {
                     mBinding.textViewEmptyHealth.setVisibility(View.VISIBLE);
                 }
             }
@@ -148,8 +155,8 @@ public class CategoryFragment extends Fragment {
         mViewModel.getSubMarketLiveData().observe(this, new Observer<List<Category>>() {
             @Override
             public void onChanged(List<Category> categories) {
-                setAdapter(mMarketAdapter , HeadCategory.SUPER_MARKET , mBinding.subSuperMarketRecycler);
-                if (mViewModel.getSubMarketLiveData().getValue().size()==0){
+                setAdapter(mMarketAdapter, HeadCategory.SUPER_MARKET, mBinding.subSuperMarketRecycler);
+                if (mViewModel.getSubMarketLiveData().getValue().size() == 0) {
                     mBinding.textViewEmptySuperMarket.setVisibility(View.VISIBLE);
                 }
             }
@@ -158,8 +165,8 @@ public class CategoryFragment extends Fragment {
         mViewModel.getSubSpecialSaleLiveData().observe(this, new Observer<List<Category>>() {
             @Override
             public void onChanged(List<Category> categories) {
-                setAdapter(mSpecialSaleAdapter , HeadCategory.SPECIAL_SALE , mBinding.subSpecialSaleRecycler);
-                if (mViewModel.getSubSpecialSaleLiveData().getValue().size()==0){
+                setAdapter(mSpecialSaleAdapter, HeadCategory.SPECIAL_SALE, mBinding.subSpecialSaleRecycler);
+                if (mViewModel.getSubSpecialSaleLiveData().getValue().size() == 0) {
                     mBinding.textViewEmptySpecialSale.setVisibility(View.VISIBLE);
                 }
             }
@@ -168,12 +175,11 @@ public class CategoryFragment extends Fragment {
         mViewModel.getCategorySubject().observe(this, new Observer<Category>() {
             @Override
             public void onChanged(Category category) {
-                Log.d("IDNumber" , category.getId()+"");
-                goToListFragment(ListType.NONE , category.getId());
+                goToListFragment(ListType.NONE, category.getId());
             }
         });
-        mViewModel.getFragmentState().observe(this , state -> {
-            if (state == State.NAVIGATE){
+        mViewModel.getFragmentState().observe(this, state -> {
+            if (state == State.NAVIGATE) {
                 mBinding.categoryRoot.setVisibility(View.VISIBLE);
                 mBinding.progressBarLoadingFragment.setVisibility(View.GONE);
                 mBinding.textViewNoNet.setVisibility(View.GONE);
@@ -181,21 +187,20 @@ public class CategoryFragment extends Fragment {
                 mViewModel.setStateFragment(State.LOADING);
             }
         });
-        mViewModel.getIsNetworkLiveData().observe(this , aBoolean -> {
-            if (!aBoolean){
+        mViewModel.getIsNetworkLiveData().observe(this, aBoolean -> {
+            if (!aBoolean) {
                 mBinding.categoryRoot.setVisibility(View.GONE);
                 mBinding.progressBarLoadingFragment.setVisibility(View.VISIBLE);
                 mBinding.textViewNoNet.setVisibility(View.VISIBLE);
-            }else {
+            } else {
                 mBinding.textViewNoNet.setVisibility(View.GONE);
             }
         });
     }
 
-    private void goToListFragment(ListType listType ,int categoryId){
+    private void goToListFragment(ListType listType, int categoryId) {
         CategoryFragmentDirections.ActionCategoryFragmentToProductListFragment action =
-                CategoryFragmentDirections.actionCategoryFragmentToProductListFragment(listType , categoryId);
+                CategoryFragmentDirections.actionCategoryFragmentToProductListFragment(listType, categoryId);
         Navigation.findNavController(mBinding.getRoot()).navigate(action);
     }
-
 }

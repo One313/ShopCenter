@@ -36,8 +36,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/ic_search_logo_big4_foreground" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/editTextTextPersonName"
@@ -46,7 +45,7 @@
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/far_yekan"
                 android:gravity="center"
-                android:text="سرچ در"
+                android:text="جستجو"
                 android:textColor="#8C8C8C"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"

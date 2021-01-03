@@ -36,9 +36,9 @@ public class SearchResultFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mSearchWord = SearchResultFragmentArgs.fromBundle(getArguments()).getSearchWord();
-        mViewModel =  new
-                ViewModelProvider(this ,
-                new SearchResultViewModelFactory((Application) getContext().getApplicationContext(),mSearchWord))
+        mViewModel = new
+                ViewModelProvider(this,
+                new SearchResultViewModelFactory((Application) getContext().getApplicationContext(), mSearchWord))
                 .get(SearchResultFragmentViewModel.class);
         initAdapter();
         observer();
@@ -49,17 +49,17 @@ public class SearchResultFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_search_result, container, false);
-        mBinding.productRecycler.setLayoutManager(new GridLayoutManager(getContext() , 1 ));
+        mBinding.productRecycler.setLayoutManager(new GridLayoutManager(getContext(), 1));
         mBinding.productRecycler.setAdapter(mAdapter);
         return mBinding.getRoot();
     }
 
     private void initAdapter() {
-        mAdapter = new SearchListAdapter(mViewModel , this , mSearchWord);
+        mAdapter = new SearchListAdapter(mViewModel, this, mSearchWord);
     }
 
-    private void observer(){
-        mViewModel.getProductLiveData().observe(this , products -> {
+    private void observer() {
+        mViewModel.getProductLiveData().observe(this, products -> {
             mAdapter.notifyDataSetChanged();
         });
     }

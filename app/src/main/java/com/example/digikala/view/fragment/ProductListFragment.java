@@ -3,6 +3,9 @@ package com.example.digikala.view.fragment;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,11 +16,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.digikala.R;
 import com.example.digikala.adapter.CategoryProductListAdapter;
 import com.example.digikala.adapter.ProductListAdapter;
@@ -25,7 +23,6 @@ import com.example.digikala.data.model.poduct.Product;
 import com.example.digikala.databinding.FragmentProductListBinding;
 import com.example.digikala.utillity.CategoryListViewModelFactory;
 import com.example.digikala.utillity.ListType;
-
 import com.example.digikala.viewmodel.CategoryProductListViewModel;
 import com.example.digikala.viewmodel.PopularProductViewModel;
 import com.example.digikala.viewmodel.ProductStrategyViewModel;
@@ -60,7 +57,6 @@ public class ProductListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("MAJID" , "INVOKE ONCREATE");
         //if user come from home fragment
         mListType = ProductListFragmentArgs.fromBundle(getArguments()).getListType();
         if (mListType != null && mListType != ListType.NONE){
@@ -95,10 +91,8 @@ public class ProductListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Log.d("MAJID" , "INVOKE onCreateView");
         mBinding = DataBindingUtil.inflate(inflater , R.layout.fragment_product_list , container , false);
         setRecyclerLayoutManager();
-        //setTitle();
         return mBinding.getRoot();
 
     }
@@ -106,7 +100,6 @@ public class ProductListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.d("MAJID" , "INVOKE onViewCreated");
 
         /**
          * when user select a product and go to DetailFragment and
@@ -120,20 +113,6 @@ public class ProductListFragment extends Fragment {
         }
 
     }
-
-    private void setTitle() {
-        switch (mListType){
-            case RECENT_PRODUCT:
-                mBinding.listTitle.setText(ListType.getRecent());
-                break;
-            case POPULAR_PRODUCT:
-                mBinding.listTitle.setText(ListType.getPopular());
-                break;
-            case RATING_PRODUCT:
-                mBinding.listTitle.setText(ListType.getRating());
-        }
-    }
-
 
     private void setRecyclerLayoutManager() {
         mBinding.productsRecycler.setLayoutManager(new GridLayoutManager(getContext() , 2));

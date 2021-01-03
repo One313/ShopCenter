@@ -18,9 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.digikala.R;
 import com.example.digikala.adapter.ProductListAdapter;
 import com.example.digikala.adapter.SliderVIPAdapter;
-import com.example.digikala.data.model.customer.Customer;
-import com.example.digikala.data.model.customer.Shipping;
-import com.example.digikala.data.repository.CustomerRepository;
 import com.example.digikala.databinding.FragmentHomeBinding;
 import com.example.digikala.utillity.ListType;
 import com.example.digikala.utillity.State;
@@ -28,6 +25,7 @@ import com.example.digikala.viewmodel.PopularProductViewModel;
 import com.example.digikala.viewmodel.ProductStrategyViewModel;
 import com.example.digikala.viewmodel.RatingProductViewModel;
 import com.example.digikala.viewmodel.RecentProductViewModel;
+
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding mHomeBinding;
@@ -51,7 +49,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("HomeFragment" ,"onCreate" );
+        Log.d("HomeFragment", "onCreate");
         mRecentViewModel = new ViewModelProvider(this).get(RecentProductViewModel.class);
         mPopularViewModel = new ViewModelProvider(this).get(PopularProductViewModel.class);
         mRatingViewModel = new ViewModelProvider(this).get(RatingProductViewModel.class);
@@ -81,7 +79,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (!mNeedToLoad){
+        if (!mNeedToLoad) {
             mHomeBinding.productRoot.setVisibility(View.VISIBLE);
             mHomeBinding.progressBarLoadingFragment.setVisibility(View.GONE);
         }
@@ -91,7 +89,7 @@ public class HomeFragment extends Fragment {
         mHomeBinding.imageSlider.setSliderAdapter(mSliderVIPAdapter);
     }
 
-    private void initAdapter(){
+    private void initAdapter() {
         mRecentProductAdapter = new ProductListAdapter(this, mRecentViewModel, ListType.RECENT_PRODUCT);
         mPopularProductAdapter = new ProductListAdapter(this, mPopularViewModel, ListType.POPULAR_PRODUCT);
         mRatingProductAdapter = new ProductListAdapter(this, mRatingViewModel, ListType.RATING_PRODUCT);
@@ -117,62 +115,56 @@ public class HomeFragment extends Fragment {
 
     private void observers() {
         mRecentViewModel.getProductLiveData().observe(this, products -> {
-                mRecentProductAdapter.notifyDataSetChanged();
+            mRecentProductAdapter.notifyDataSetChanged();
         });
 
-        mPopularViewModel.getProductLiveData().observe(this,products -> {
-                mPopularProductAdapter.notifyDataSetChanged();
+        mPopularViewModel.getProductLiveData().observe(this, products -> {
+            mPopularProductAdapter.notifyDataSetChanged();
         });
 
-        mRatingViewModel.getProductLiveData().observe(this,  products -> {
+        mRatingViewModel.getProductLiveData().observe(this, products -> {
             mRatingProductAdapter.notifyDataSetChanged();
         });
 
-        mRecentViewModel.getProductSelectedLiveData().observe(this,  product -> {
-                goToDetailFragment(Integer.parseInt(product.getId()));
+        mRecentViewModel.getProductSelectedLiveData().observe(this, product -> {
+            goToDetailFragment(Integer.parseInt(product.getId()));
         });
 
         mPopularViewModel.getProductSelectedLiveData().observe(this, product -> {
-                goToDetailFragment(Integer.parseInt(product.getId()));
+            goToDetailFragment(Integer.parseInt(product.getId()));
         });
-        mRatingViewModel.getProductSelectedLiveData().observe(this,  product ->{
-                goToDetailFragment(Integer.parseInt(product.getId()));
+        mRatingViewModel.getProductSelectedLiveData().observe(this, product -> {
+            goToDetailFragment(Integer.parseInt(product.getId()));
         });
 
-        mRecentViewModel.getFragmentState().observe(this , state -> {
-            if (state == State.NAVIGATE){
+        mRecentViewModel.getFragmentState().observe(this, state -> {
+            if (state == State.NAVIGATE) {
                 mHomeBinding.productRoot.setVisibility(View.VISIBLE);
                 mHomeBinding.progressBarLoadingFragment.setVisibility(View.GONE);
-                CustomerRepository customerRepository = CustomerRepository.INSTANCE;
 
-                Shipping sh = new Shipping("majid","moharami","scs",
-                        "iran","tehran","varamin","12344");
-                Customer customer = new Customer("majid11111@gmail.com","majid",
-                        "moharami",sh);
-                customerRepository.postCustomer(customer);
-                mNeedToLoad=false;
+                mNeedToLoad = false;
                 mRecentViewModel.setFragmentState(State.LOADING);
             }
         });
     }
 
-    private void goToDetailFragment(int productId){
+    private void goToDetailFragment(int productId) {
         HomeFragmentDirections.ActionHomeFragmentToProductDetailFragment action =
                 HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(productId);
         Navigation.findNavController(mHomeBinding.getRoot()).navigate(action);
     }
 
-    public void foToProductListFragment(int num){
+    public void foToProductListFragment(int num) {
         HomeFragmentDirections.ActionHomeFragmentToProductListFragment action;
-        if (num == 1){
-         action =
-                HomeFragmentDirections.actionHomeFragmentToProductListFragment( ListType.RECENT_PRODUCT , -1);
-        }else if (num == 2){
+        if (num == 1) {
             action =
-                    HomeFragmentDirections.actionHomeFragmentToProductListFragment( ListType.POPULAR_PRODUCT , -1);
-        }else {
+                    HomeFragmentDirections.actionHomeFragmentToProductListFragment(ListType.RECENT_PRODUCT, -1);
+        } else if (num == 2) {
             action =
-                    HomeFragmentDirections.actionHomeFragmentToProductListFragment( ListType.RATING_PRODUCT , -1);
+                    HomeFragmentDirections.actionHomeFragmentToProductListFragment(ListType.POPULAR_PRODUCT, -1);
+        } else {
+            action =
+                    HomeFragmentDirections.actionHomeFragmentToProductListFragment(ListType.RATING_PRODUCT, -1);
         }
         Navigation.findNavController(mHomeBinding.getRoot()).navigate(action);
     }
