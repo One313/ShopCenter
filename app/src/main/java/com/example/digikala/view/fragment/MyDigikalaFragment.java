@@ -38,10 +38,10 @@ public class MyDigikalaFragment extends Fragment {
         mViewModel.getIsEmailExistLiveData().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                if (!aBoolean){
+                if (!aBoolean) {
                     Toast.makeText(getContext(), "ایمیل وارد شده قبلا ثبت شده", Toast.LENGTH_SHORT).show();
-                }else {
-                    MyDigikalaFragmentDirections.ActionNavMyDigikalaFragment1ToPersonalInfoFragment action=
+                } else {
+                    MyDigikalaFragmentDirections.ActionNavMyDigikalaFragment1ToPersonalInfoFragment action =
                             MyDigikalaFragmentDirections.actionNavMyDigikalaFragment1ToPersonalInfoFragment(mBinding.editTextPersian.getText().toString());
                     Navigation.findNavController(mBinding.getRoot()).navigate(action);
                 }
@@ -57,13 +57,13 @@ public class MyDigikalaFragment extends Fragment {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_digikala, container, false);
         mBinding.button.setOnClickListener(v -> {
             mBinding.progressBarLoadingFragment.setVisibility(View.VISIBLE);
-            if (!(Patterns.EMAIL_ADDRESS.matcher(mBinding.editTextPersian.getText().toString()).matches())){
+            if (!(Patterns.EMAIL_ADDRESS.matcher(mBinding.editTextPersian.getText().toString()).matches())) {
                 Toast.makeText(getContext(), "ایمیل وارد شده صحیح نیست", Toast.LENGTH_SHORT).show();
                 mBinding.progressBarLoadingFragment.setVisibility(View.INVISIBLE);
-            }else if (TextUtils.isEmpty(mBinding.editTextPersian.getText().toString())){
+            } else if (TextUtils.isEmpty(mBinding.editTextPersian.getText().toString())) {
                 Toast.makeText(getContext(), "ایمیل خود را وارد کنید", Toast.LENGTH_SHORT).show();
                 mBinding.progressBarLoadingFragment.setVisibility(View.INVISIBLE);
-            }else {
+            } else {
                 mViewModel.checkEmailExist(mBinding.editTextPersian.getText().toString());
             }
         });

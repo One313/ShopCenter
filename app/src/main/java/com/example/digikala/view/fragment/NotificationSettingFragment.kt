@@ -20,13 +20,13 @@ class NotificationSettingFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val binding = FragmentNotificationSettingBinding.inflate(inflater,container, false)
+        val binding = FragmentNotificationSettingBinding.inflate(inflater, container, false)
         binding.buttonSale.setOnClickListener {
-            if (binding.switch15min.isChecked){
+            if (binding.switch15min.isChecked) {
                 mViewModel.scheduleNotification(15)
-            }else if (binding.switch30min.isChecked){
+            } else if (binding.switch30min.isChecked) {
                 mViewModel.scheduleNotification(30)
-            }else if (binding.switch40min.isChecked){
+            } else if (binding.switch40min.isChecked) {
                 mViewModel.scheduleNotification(40)
             }
         }

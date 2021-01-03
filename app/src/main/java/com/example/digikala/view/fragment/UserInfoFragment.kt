@@ -12,7 +12,7 @@ import com.example.digikala.viewmodel.CustomerViewModel
 
 class UserInfoFragment : Fragment() {
 
-    private lateinit var mViewModel : CustomerViewModel
+    private lateinit var mViewModel: CustomerViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,10 +22,10 @@ class UserInfoFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        var binding = FragmentUserInfoBinding.inflate(inflater, container, false)
-        var c = mViewModel.getCustomers()?.get(0)
+        val binding = FragmentUserInfoBinding.inflate(inflater, container, false)
+        val c = mViewModel.getCustomers()?.get(0)
         if (c != null) {
-            binding.textViewUsetName.text = c.mFistName+" "+ c.mLastName
+            binding.textViewUsetName.text = c.mFistName + " " + c.mLastName
             binding.textViewUserEmail.text = c.mEmail
         }
         binding.imageViewNotifSetting.setOnClickListener {

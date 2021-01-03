@@ -1,7 +1,6 @@
 package com.example.digikala.view.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +39,6 @@ public class BasketFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("BasketFragment", "onCreate");
         mViewModel = new ViewModelProvider(this).get(CartFragmentViewModel.class);
         mViewModel.fetchAllProducts();
         mAdapter = new CartProductListAdapter(mViewModel, this);
@@ -69,14 +67,13 @@ public class BasketFragment extends Fragment {
             @Override
             public void onChanged(State state) {
                 if (state == State.NAVIGATE) {
-                    Log.d("CartProductLoadingFragment", state.toString());
                     mBinding.progressBarLoadingFragment.setVisibility(View.GONE);
                     mBinding.baseLayout.setVisibility(View.VISIBLE);
                     mViewModel.getProducts().observe(BasketFragment.this, new Observer<List<Product>>() {
                         @Override
                         public void onChanged(List<Product> products) {
                             mAdapter.notifyDataSetChanged();
-                            mBinding.textViewAllProductPrice.setText(mViewModel.calculateAllPrice(products)+" تومان ");
+                            mBinding.textViewAllProductPrice.setText(mViewModel.calculateAllPrice(products) + " تومان ");
                         }
                     });
                     /*because repository is alive and next time that we go to this fragment the
@@ -84,7 +81,7 @@ public class BasketFragment extends Fragment {
                     mViewModel.setState(State.NONE);
                 }
 
-                if (state == State.LOADING){
+                if (state == State.LOADING) {
                     mBinding.progressBarLoadingFragment.setVisibility(View.VISIBLE);
                     mBinding.baseLayout.setVisibility(View.GONE);
                     mViewModel.setState(State.NONE);

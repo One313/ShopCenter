@@ -12,7 +12,7 @@ import com.example.digikala.viewmodel.CustomerViewModel
 
 class ChoosingCustomerFragment : Fragment() {
 
-    private var mViewModel : CustomerViewModel? = null
+    private var mViewModel: CustomerViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,10 +29,10 @@ class ChoosingCustomerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (  mViewModel?.getCustomersDatabase() == null || mViewModel!!.getCustomersDatabase()?.isEmpty() == true){
+        if (mViewModel?.getCustomersDatabase() == null || mViewModel!!.getCustomersDatabase()?.isEmpty() == true) {
             Navigation.findNavController(view).navigate(ChoosingCustomerFragmentDirections.actionChoosingCustomerFragmentToNavMyDigikalaFragment())
 
-        }else{
+        } else {
             Navigation.findNavController(view).navigate(ChoosingCustomerFragmentDirections.actionChoosingCustomerFragmentToUserInfoFragment())
         }
     }

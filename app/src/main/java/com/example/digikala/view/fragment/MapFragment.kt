@@ -48,7 +48,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         mMap.setOnMapLongClickListener {
             mLatLng = it
-            Log.d("MAP",it.toString())
+            Log.d("MAP", it.toString())
             val newCameraUpdate = CameraUpdateFactory.newLatLngZoom(it, 15f)
             val markerOptions = MarkerOptions()
             markerOptions.position(it)

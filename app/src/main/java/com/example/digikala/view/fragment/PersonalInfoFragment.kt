@@ -11,11 +11,11 @@ import com.example.digikala.databinding.FragmentPersonalInfoBinding
 
 class PersonalInfoFragment : Fragment() {
 
-    private lateinit var mBinding:FragmentPersonalInfoBinding
-    private var email : String? = null
+    private lateinit var mBinding: FragmentPersonalInfoBinding
+    private var email: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        email = arguments?.let { PersonalInfoFragmentArgs.fromBundle(it).email}
+        email = arguments?.let { PersonalInfoFragmentArgs.fromBundle(it).email }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -23,13 +23,13 @@ class PersonalInfoFragment : Fragment() {
         val binding = FragmentPersonalInfoBinding.inflate(inflater, container, false)
         binding.button.setOnClickListener {
             if (binding.editTextFirstName.text?.isEmpty() == true ||
-                    binding.editTextLastName.text?.isEmpty() == true  ||
-                    binding.editTextPassword.text?.isEmpty() == true ){
-                Toast.makeText(context , "جاهای خالی را پر کنید" ,Toast.LENGTH_SHORT).show()
-            }else{
-               var action : PersonalInfoFragmentDirections.ActionPersonalInfoFragmentToShippingInfoFragment =
-                       PersonalInfoFragmentDirections.actionPersonalInfoFragmentToShippingInfoFragment(
-                               email!!,binding.editTextFirstName.text.toString(),binding.editTextLastName.text.toString())
+                    binding.editTextLastName.text?.isEmpty() == true ||
+                    binding.editTextPassword.text?.isEmpty() == true) {
+                Toast.makeText(context, "جاهای خالی را پر کنید", Toast.LENGTH_SHORT).show()
+            } else {
+                val action: PersonalInfoFragmentDirections.ActionPersonalInfoFragmentToShippingInfoFragment =
+                        PersonalInfoFragmentDirections.actionPersonalInfoFragmentToShippingInfoFragment(
+                                email!!, binding.editTextFirstName.text.toString(), binding.editTextLastName.text.toString())
                 Navigation.findNavController(binding.root).navigate(action)
             }
         }
@@ -37,7 +37,8 @@ class PersonalInfoFragment : Fragment() {
     }
 
     companion object {
-        @JvmStatic fun newInstance(param1: String, param2: String) =
+        @JvmStatic
+        fun newInstance(param1: String, param2: String) =
                 PersonalInfoFragment().apply {
                     arguments = Bundle().apply {
                     }
