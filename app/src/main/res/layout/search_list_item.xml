@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.digikala.viewmodel.ProductStrategyViewModel" />
+            type="com.example.shopcenter.viewmodel.ProductStrategyViewModel" />
         <variable
             name="position"
             type="Integer" />

@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.digikala.viewmodel.DetailFragmentViewModel" />
+            type="com.example.shopcenter.viewmodel.DetailFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

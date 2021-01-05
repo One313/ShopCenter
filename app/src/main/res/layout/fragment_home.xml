@@ -7,19 +7,19 @@
 
         <variable
             name="RecentViewModel"
-            type="com.example.digikala.viewmodel.RecentProductViewModel" />
+            type="com.example.shopcenter.viewmodel.RecentProductViewModel" />
 
         <variable
             name="PopularViewModel"
-            type="com.example.digikala.viewmodel.PopularProductViewModel" />
+            type="com.example.shopcenter.viewmodel.PopularProductViewModel" />
 
         <variable
             name="RatingViewModel"
-            type="com.example.digikala.viewmodel.RatingProductViewModel" />
+            type="com.example.shopcenter.viewmodel.RatingProductViewModel" />
 
         <variable
             name="thisFragment"
-            type="com.example.digikala.view.fragment.HomeFragment" />
+            type="com.example.shopcenter.view.fragment.HomeFragment" />
     </data>
 
     <FrameLayout
@@ -43,7 +43,7 @@
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:visibility="visible"
-            app:indicatorColor="#FF1744"
+            app:indicatorColor="#3F51B5"
             app:indicatorName="BallPulseIndicator" />
 
         <androidx.constraintlayout.widget.ConstraintLayout

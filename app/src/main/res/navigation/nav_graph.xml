@@ -4,144 +4,136 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/nav_homeFragment">
-    <fragment
-        android:id="@+id/nav_homeFragment"
-        android:name="com.example.digikala.view.fragment.HomeFragment"
-        android:label="HomeFragment" >
-        <action
-            android:id="@+id/action_homeFragment_to_productDetailFragment"
-            app:destination="@id/nav_productDetailFragment" >
-        </action>
-        <action
-            android:id="@+id/action_homeFragment_to_productListFragment"
-            app:destination="@id/nav_productListFragment" />
-        <action
-            android:id="@+id/action_nav_homeFragment_to_searchFragment"
-            app:destination="@id/nav_searchFragment" />
+    app:startDestination="@id/homeFragment">
 
-    </fragment>
-    <fragment
-        android:id="@+id/nav_categoryFragment"
-        android:name="com.example.digikala.view.fragment.CategoryFragment"
-        android:label="CategoryFragment" >
-        <action
-            android:id="@+id/action_categoryFragment_to_productListFragment"
-            app:destination="@id/nav_productListFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/fragment_basket"
-        android:name="com.example.digikala.view.fragment.BasketFragment"
-        android:label="fragment_basket2"
-        tools:layout="@layout/fragment_basket" >
-    </fragment>
-    <fragment
-        android:id="@+id/nav_myDigikalaFragment"
-        android:name="com.example.digikala.view.fragment.MyDigikalaFragment"
-        tools:layout="@layout/fragment_my_digikala">
-
-        <action
-            android:id="@+id/action_nav_myDigikalaFragment1_to_personalInfoFragment"
-            app:destination="@id/personalInfoFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_productDetailFragment"
-        android:name="com.example.digikala.view.fragment.ProductDetailFragment"
-        android:label="ProductDetailFragment" >
-        <argument
-            android:name="productId"
-            app:argType="integer" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_productListFragment"
-        android:name="com.example.digikala.view.fragment.ProductListFragment"
-        android:label="ProductListFragment" >
-        <action
-            android:id="@+id/action_productListFragment_to_productDetailFragment"
-            app:destination="@id/nav_productDetailFragment" />
-        <argument
-            android:name="ListType"
-            app:argType="com.example.digikala.utillity.ListType"
-          />
-        <argument
-            android:name="CategoryId"
-            app:argType="integer" />
-
-
-    </fragment>
-    <fragment
-        android:id="@+id/nav_searchFragment"
-        android:name="com.example.digikala.view.fragment.SearchFragment"
-        android:label="SearchFragment" >
-        <action
-            android:id="@+id/action_nav_searchFragment_to_searchResultFragment"
-            app:destination="@id/searchResultFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/searchResultFragment"
-        android:name="com.example.digikala.view.fragment.SearchResultFragment"
-        android:label="SearchResultFragment" >
-        <argument
-            android:name="searchWord"
-            app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/personalInfoFragment"
-        android:name="com.example.digikala.view.fragment.PersonalInfoFragment"
-        android:label="PersonalInfoFragment" >
-        <action
-            android:id="@+id/action_personalInfoFragment_to_shippingInfoFragment"
-            app:destination="@id/shippingInfoFragment" />
-        <argument
-            android:name="email"
-            app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/userInfoFragment"
-        android:name="com.example.digikala.view.fragment.UserInfoFragment"
-        android:label="UserInfoFragment" >
-        <action
-            android:id="@+id/action_userInfoFragment_to_notificationSettingFragment"
-            app:destination="@id/notificationSettingFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/shippingInfoFragment"
-        android:name="com.example.digikala.view.fragment.ShippingInfoFragment"
-        android:label="ShippingInfoFragment" >
-        <action
-            android:id="@+id/action_shippingInfoFragment_to_userInfoFragment"
-            app:destination="@id/userInfoFragment" />
-        <argument
-            android:name="email"
-            app:argType="string" />
-        <argument
-            android:name="first_name"
-            app:argType="string" />
-        <argument
-            android:name="last_name"
-            app:argType="string" />
-        <action
-            android:id="@+id/action_shippingInfoFragment_to_mapFragment"
-            app:destination="@id/mapFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/choosingCustomerFragment"
-        android:name="com.example.digikala.view.fragment.ChoosingCustomerFragment"
-        android:label="ChoosingCustomerFragment" >
-        <action
-            android:id="@+id/action_choosingCustomerFragment_to_userInfoFragment"
-            app:destination="@id/userInfoFragment" />
-        <action
-            android:id="@+id/action_choosingCustomerFragment_to_nav_myDigikalaFragment"
-            app:destination="@id/nav_myDigikalaFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/notificationSettingFragment"
-        android:name="com.example.digikala.view.fragment.NotificationSettingFragment"
-        android:label="NotificationSettingFragment" />
-    <fragment
-        android:id="@+id/mapFragment"
-        android:name="com.example.digikala.view.fragment.MapFragment"
-        android:label="MapFragment" />
-
+   <fragment
+       android:id="@+id/homeFragment"
+       android:name="com.example.shopcenter.view.fragment.HomeFragment"
+       android:label="HomeFragment" >
+      <action
+          android:id="@+id/action_homeFragment_to_productListFragment"
+          app:destination="@id/productListFragment" />
+      <action
+          android:id="@+id/action_homeFragment_to_productDetailFragment"
+          app:destination="@id/productDetailFragment" />
+      <action
+          android:id="@+id/action_homeFragment_to_searchFragment"
+          app:destination="@id/searchFragment" />
+   </fragment>
+   <fragment
+       android:id="@+id/basketFragment"
+       android:name="com.example.shopcenter.view.fragment.BasketFragment"
+       android:label="BasketFragment" />
+   <fragment
+       android:id="@+id/categoryFragment"
+       android:name="com.example.shopcenter.view.fragment.CategoryFragment"
+       android:label="CategoryFragment" >
+      <action
+          android:id="@+id/action_categoryFragment_to_productListFragment"
+          app:destination="@id/productListFragment" />
+   </fragment>
+   <fragment
+       android:id="@+id/choosingCustomerFragment2"
+       android:name="com.example.shopcenter.view.fragment.ChoosingCustomerFragment"
+       android:label="ChoosingCustomerFragment" >
+      <action
+          android:id="@+id/action_choosingCustomerFragment2_to_userInfoFragment"
+          app:destination="@id/userInfoFragment" />
+      <action
+          android:id="@+id/action_choosingCustomerFragment2_to_myShopCenterFragment"
+          app:destination="@id/myShopCenterFragment" />
+   </fragment>
+   <fragment
+       android:id="@+id/userInfoFragment"
+       android:name="com.example.shopcenter.view.fragment.UserInfoFragment"
+       android:label="UserInfoFragment" >
+      <action
+          android:id="@+id/action_userInfoFragment_to_notificationSettingFragment"
+          app:destination="@id/notificationSettingFragment" />
+   </fragment>
+   <fragment
+       android:id="@+id/notificationSettingFragment"
+       android:name="com.example.shopcenter.view.fragment.NotificationSettingFragment"
+       android:label="NotificationSettingFragment" />
+   <fragment
+       android:id="@+id/myShopCenterFragment"
+       android:name="com.example.shopcenter.view.fragment.MyShopCenterFragment"
+       android:label="MyShopCenterFragment" >
+      <action
+          android:id="@+id/action_myShopCenterFragment_to_personalInfoFragment"
+          app:destination="@id/personalInfoFragment" />
+   </fragment>
+   <fragment
+       android:id="@+id/personalInfoFragment"
+       android:name="com.example.shopcenter.view.fragment.PersonalInfoFragment"
+       android:label="PersonalInfoFragment" >
+      <action
+          android:id="@+id/action_personalInfoFragment_to_shippingInfoFragment"
+          app:destination="@id/shippingInfoFragment" />
+      <argument
+          android:name="email"
+          app:argType="string" />
+   </fragment>
+   <fragment
+       android:id="@+id/shippingInfoFragment"
+       android:name="com.example.shopcenter.view.fragment.ShippingInfoFragment"
+       android:label="ShippingInfoFragment" >
+      <action
+          android:id="@+id/action_shippingInfoFragment_to_userInfoFragment"
+          app:destination="@id/userInfoFragment" />
+      <action
+          android:id="@+id/action_shippingInfoFragment_to_mapFragment"
+          app:destination="@id/mapFragment" />
+      <argument
+          android:name="email"
+          app:argType="string" />
+      <argument
+          android:name="firstName"
+          app:argType="string" />
+      <argument
+          android:name="lastName"
+          app:argType="string" />
+   </fragment>
+   <fragment
+       android:id="@+id/mapFragment"
+       android:name="com.example.shopcenter.view.fragment.MapFragment"
+       android:label="MapFragment" />
+   <fragment
+       android:id="@+id/productListFragment"
+       android:name="com.example.shopcenter.view.fragment.ProductListFragment"
+       android:label="ProductListFragment" >
+      <action
+          android:id="@+id/action_productListFragment_to_productDetailFragment"
+          app:destination="@id/productDetailFragment" />
+      <argument
+          android:name="categoryId"
+          app:argType="integer" />
+      <argument
+          android:name="listType"
+          app:argType="com.example.shopcenter.utillity.ListType" />
+   </fragment>
+   <fragment
+       android:id="@+id/productDetailFragment"
+       android:name="com.example.shopcenter.view.fragment.ProductDetailFragment"
+       android:label="ProductDetailFragment" >
+      <argument
+          android:name="productId"
+          app:argType="integer" />
+   </fragment>
+   <fragment
+       android:id="@+id/searchFragment"
+       android:name="com.example.shopcenter.view.fragment.SearchFragment"
+       android:label="SearchFragment" >
+      <action
+          android:id="@+id/action_searchFragment_to_searchResultFragment"
+          app:destination="@id/searchResultFragment" />
+   </fragment>
+   <fragment
+       android:id="@+id/searchResultFragment"
+       android:name="com.example.shopcenter.view.fragment.SearchResultFragment"
+       android:label="SearchResultFragment" >
+      <argument
+          android:name="searchWord"
+          app:argType="string" />
+   </fragment>
 </navigation>

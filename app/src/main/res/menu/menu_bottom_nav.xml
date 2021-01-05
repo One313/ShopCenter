@@ -7,22 +7,22 @@
 
 
     <item
-        android:id="@+id/nav_homeFragment"
+        android:id="@+id/homeFragment"
         android:icon="@drawable/ic_navigation_bottom_home_bn"
         android:title="@string/home"
         />
     <item
-        android:id="@+id/nav_categoryFragment"
+        android:id="@+id/categoryFragment"
         android:icon="@drawable/ic_navigation_bottom_catogories_bn"
         android:title="@string/grouping"
         />
     <item
-        android:id="@+id/fragment_basket"
+        android:id="@+id/basketFragment"
         android:icon="@drawable/ic_navigation_bottom_cart_bn"
         android:title="@string/shop_basket" />
 
     <item
-        android:id="@+id/choosingCustomerFragment"
+        android:id="@+id/choosingCustomerFragment2"
         android:icon="@drawable/ic_navigation_bottom_my_shop_bn"
         android:title="@string/my_shop_center"
         />

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.digikala.viewmodel.CartFragmentViewModel" />
+            type="com.example.shopcenter.viewmodel.CartFragmentViewModel" />
         <variable
             name="position"
             type="Integer" />

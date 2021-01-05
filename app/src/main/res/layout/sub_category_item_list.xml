@@ -6,10 +6,10 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.digikala.viewmodel.CategoryFragmentViewModel" />
+            type="com.example.shopcenter.viewmodel.CategoryFragmentViewModel" />
         <variable
             name="categoryType"
-            type="com.example.digikala.utillity.HeadCategory" />
+            type="com.example.shopcenter.utillity.HeadCategory" />
         <variable
             name="position"
             type="Integer" />
