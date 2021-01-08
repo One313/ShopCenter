@@ -28,7 +28,6 @@ public class BasketFragment extends Fragment {
     private FragmentBasketBinding mBinding;
     private CartProductListAdapter mAdapter;
 
-    //private CartProductDBRepository mCartProductDBRepository;
     public static BasketFragment newInstance() {
         BasketFragment fragment = new BasketFragment();
         Bundle args = new Bundle();
