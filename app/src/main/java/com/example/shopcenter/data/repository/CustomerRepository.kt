@@ -40,7 +40,7 @@ object CustomerRepository {
             }
 
             override fun onFailure(call: Call<Customer>, t: Throwable) {
-                Log.d("CustomerRepository", "!isSuccessful", t.cause)
+
             }
 
         })
@@ -51,14 +51,12 @@ object CustomerRepository {
         call.enqueue(object : Callback<List<Customer>>{
             override fun onResponse(call: Call<List<Customer>>, response: Response<List<Customer>>) {
                 if (response.isSuccessful){
-                    if (response.body()?.isEmpty() == true) {
-                        isEmailExistLiveData.value = true
-                    }else   isEmailExistLiveData.value = false
+                    isEmailExistLiveData.value = response.body()?.isEmpty() == true
                 }
             }
 
             override fun onFailure(call: Call<List<Customer>>, t: Throwable) {
-                TODO("Not yet implemented")
+
             }
 
 

@@ -16,6 +16,6 @@ class ImageConverterResource {
     }
 
     fun convertResourceToURL(res:Int):String{
-        return Uri.parse("android.resource://com.example.digikala/" + res).toString()
+        return Uri.parse("android.resource://com.example.shopcenter/" + res).toString()
     }
 }

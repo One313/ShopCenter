@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.shopcenter.R;
+import com.example.shopcenter.data.model.ProductImage;
 import com.example.shopcenter.data.model.poduct.Product;
 import com.example.shopcenter.databinding.ProductItemListBinding;
 import com.example.shopcenter.utillity.ListType;
@@ -34,14 +35,6 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         mViewModel = viewModel;
         mListType = listType;
     }
-//
-//    public List<Product> getProductList() {
-//        return mProductList;
-//    }
-//
-//    public void setProductList(List<Product> productList) {
-//        mProductList = productList;
-//    }
 
     @NonNull
     @Override
@@ -85,22 +78,16 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             super(productItemListBinding.getRoot());
             mItemListBinding = productItemListBinding;
             mItemListBinding.setViewModel(mViewModel);
-            // mItemListBinding.setLifecycleOwner(mOwner);
             mItemListBinding.setListType(mListType);
-//            Typeface typeFace = Typeface.createFromAsset(mViewModel.getApplication().getAssets(), "font/Dirooz-FD.ttf");
-//            mItemListBinding.textViewProductName.setTypeface(typeFace);
-//            mItemListBinding.textViewProductPrice.setTypeface(typeFace);
         }
 
         public void onBind(int position) {
             mItemListBinding.setPosition(position);
             mItemListBinding.executePendingBindings();
 
-            String imageURL = null;
-
-            imageURL = mViewModel.getProductLiveData().getValue().get(position).getImages().get(0).getImageURL();
-
-            Glide.with(mViewModel.getApplication()).load(imageURL).into(mItemListBinding.imageViewProductImage);
+            List<ProductImage> images = mViewModel.getProductLiveData().getValue().get(position).getImages();
+            if (images != null && images.size() > 0)
+                Glide.with(mViewModel.getApplication()).load(images.get(0).getImageURL()).into(mItemListBinding.imageViewProductImage);
         }
     }
 }

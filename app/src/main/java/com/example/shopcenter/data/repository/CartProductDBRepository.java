@@ -49,7 +49,6 @@ public class CartProductDBRepository {
 
     public void update(CartProduct cartProduct) {
         mDatabase.getDao().update(cartProduct);
-       // mStateMutableLiveData.setValue(State.LOADING);
         fetchAllProduct();
     }
 
@@ -72,7 +71,6 @@ public class CartProductDBRepository {
         if (getAllCartProduct().size()==0){
             mStateMutableLiveData.setValue(State.NAVIGATE);
             return;
-         //   mStateMutableLiveData.setValue(State.NONE);
         }
         for (int i = 0; i < getAllCartProduct().size(); i++) {
             String id = String.valueOf(getAllCartProduct().get(i).getProductId());
@@ -93,13 +91,9 @@ public class CartProductDBRepository {
 
                 @Override
                 public void onFailure(Call<Product> call, Throwable t) {
-                    Log.d("MAJID", t.toString(), t);
                 }
             });
-
         }
-
-        Log.d("LIST", "fetchAll");
     }
 
 

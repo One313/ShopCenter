@@ -27,7 +27,6 @@ public class CartFragmentViewModel extends AndroidViewModel {
         super(application);
 
         mCartProductDBRepository = CartProductDBRepository.getInstance(application);
-        Log.d("LIST", "ViewModelConstructor");
     }
 
     public void fetchAllProducts() {
@@ -68,7 +67,6 @@ public class CartFragmentViewModel extends AndroidViewModel {
     }
 
     public Product getProduct(int position) {
-        Log.d("LIST", "getProduct");
         return mCartProductDBRepository.getProductLiveData().getValue().get(position);
     }
 

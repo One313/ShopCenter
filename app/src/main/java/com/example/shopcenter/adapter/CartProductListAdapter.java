@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.shopcenter.R;
 import com.example.shopcenter.data.database.entity.CartProduct;
+import com.example.shopcenter.data.model.ProductImage;
 import com.example.shopcenter.data.model.poduct.Product;
 import com.example.shopcenter.databinding.CartProductItemBinding;
 import com.example.shopcenter.utillity.DeleteProductHelper;
@@ -27,7 +28,8 @@ public class CartProductListAdapter extends RecyclerView.Adapter<CartProductList
     private LiveData<List<Product>> mProductLiveData;
     private LifecycleOwner mOwner;
     private CartFragmentViewModel mViewModel;
-    public CartProductListAdapter(CartFragmentViewModel viewModel , LifecycleOwner owner) {
+
+    public CartProductListAdapter(CartFragmentViewModel viewModel, LifecycleOwner owner) {
         mViewModel = viewModel;
         mCartProductList = viewModel.getCartProducts();
         mOwner = owner;
@@ -63,22 +65,14 @@ public class CartProductListAdapter extends RecyclerView.Adapter<CartProductList
             mBinding = cartProductItemBinding;
             mBinding.setViewModel(mViewModel);
 
-            //set font
-//            Typeface typeFace = Typeface.createFromAsset(mViewModel.getApplication().getAssets(), "font/Dirooz-FD.ttf");
-//            mBinding.textViewProductName.setTypeface(typeFace);
-//            mBinding.textView2.setTypeface(typeFace);
-//            mBinding.textView3.setTypeface(typeFace);
-//            mBinding.textView6.setTypeface(typeFace);
-//            mBinding.textView5.setTypeface(typeFace);
-//            mBinding.textViewPrice.setTypeface(typeFace);
-//            mBinding.textViewProductCount.setTypeface(typeFace);
 
             mViewModel.getDeleteProductHelperMutableLiveData().observe(mOwner, new Observer<DeleteProductHelper>() {
                 @Override
                 public void onChanged(DeleteProductHelper deleteProductHelper) {
-                    if (deleteProductHelper== DeleteProductHelper.SUBMISSION){
+                    if (deleteProductHelper == DeleteProductHelper.SUBMISSION) {
                         mBinding.imageViewSubtrack.setImageResource(R.drawable.ic_subtrack_product);
-                    }else mBinding.imageViewSubtrack.setImageResource(R.drawable.ic_delete_product);
+                    } else
+                        mBinding.imageViewSubtrack.setImageResource(R.drawable.ic_delete_product);
                 }
             });
         }
@@ -87,12 +81,9 @@ public class CartProductListAdapter extends RecyclerView.Adapter<CartProductList
             mBinding.setPosition(position);
             mBinding.executePendingBindings();
 
-            String imageURL = null;
-            imageURL =mViewModel.getProducts().getValue().get(position).getImages().get(0).getImageURL();
-            Glide.with(mViewModel.getApplication()).load(imageURL).into(mBinding.imageViewProduct);
-            //mBinding.textViewPrice.setText(mViewModel.getProduct(position).getPriceToman());
-            //mBinding.textViewProductCount.setText(String.valueOf(mViewModel.getCartProduct(position).getCount()));
-            //mBinding.textViewProductName.setText(mViewModel.getProduct(position).getName());
+            List<ProductImage> images = mViewModel.getProducts().getValue().get(position).getImages();
+            if (images != null && images.size() > 0)
+                Glide.with(mViewModel.getApplication()).load(images.get(0).getImageURL()).into(mBinding.imageViewProduct);
         }
     }
 

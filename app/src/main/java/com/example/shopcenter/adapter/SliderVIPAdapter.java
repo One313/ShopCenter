@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SliderVIPAdapter extends
-        SliderViewAdapter<SliderVIPAdapter.SliderAdapterVH2>{
+        SliderViewAdapter<SliderVIPAdapter.SliderAdapterVH2> {
 
     private Context mContext;
     List<String> stringsResource = new ArrayList<>();
@@ -41,7 +41,7 @@ public class SliderVIPAdapter extends
 
     @Override
     public void onBindViewHolder(SliderAdapterVH2 viewHolder, int position) {
-        viewHolder.onBind(position , mContext);
+        viewHolder.onBind(position, mContext);
     }
 
     @Override
@@ -51,13 +51,16 @@ public class SliderVIPAdapter extends
 
     class SliderAdapterVH2 extends SliderViewAdapter.ViewHolder {
         SliderItemBinding mSliderItemBinding;
+
         public SliderAdapterVH2(SliderItemBinding sliderItemBinding) {
             super(sliderItemBinding.getRoot());
-            mSliderItemBinding  = sliderItemBinding;
+            mSliderItemBinding = sliderItemBinding;
         }
 
-        public void onBind(int position , Context context){
-            Glide.with(context).load(stringsResource.get(position)).into(mSliderItemBinding.imageProduct);
+        public void onBind(int position, Context context) {
+            String imageUrl = stringsResource.get(position);
+            if (imageUrl != null)
+                Glide.with(context).load(imageUrl).into(mSliderItemBinding.imageProduct);
         }
     }
 }

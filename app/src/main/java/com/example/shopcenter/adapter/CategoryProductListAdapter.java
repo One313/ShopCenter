@@ -24,6 +24,5 @@ public class CategoryProductListAdapter extends ProductListAdapter {
             mViewModel.updateCategoryProductsList(mPage);
             mPage++;
         }
-
     }
 }

@@ -71,9 +71,6 @@ class NewProductNotifyWorker(context: Context, workerParams: WorkerParameters) :
         private val WORK_TAG_POLL = "productPollWorker"
         fun scheduleNotification(context: Context, repeatingTime: Long , startSchedule : Boolean){
 
-//            if (!startSchedule) {
-//                return
-//            }
 
             val constraints : Constraints = Constraints.Builder()
                     .setRequiredNetworkType(NetworkType.UNMETERED)

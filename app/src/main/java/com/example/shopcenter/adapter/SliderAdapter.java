@@ -22,7 +22,7 @@ public class SliderAdapter extends
     private Context mContext;
     private List<ProductImage> mSliderItems = new ArrayList<>();
 
-    public SliderAdapter(Context context , Product product) {
+    public SliderAdapter(Context context, Product product) {
         mContext = context;
         mSliderItems = product.getImages();
     }
@@ -40,7 +40,7 @@ public class SliderAdapter extends
 
     @Override
     public void onBindViewHolder(SliderAdapterVH viewHolder, final int position) {
-        viewHolder.onBind(position , mContext);
+        viewHolder.onBind(position, mContext);
     }
 
     @Override
@@ -51,13 +51,16 @@ public class SliderAdapter extends
 
     class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
         SliderItemBinding mSliderItemBinding;
+
         public SliderAdapterVH(SliderItemBinding sliderItemBinding) {
             super(sliderItemBinding.getRoot());
-           mSliderItemBinding  = sliderItemBinding;
+            mSliderItemBinding = sliderItemBinding;
         }
 
-        public void onBind(int position , Context context){
-            Glide.with(context).load(mSliderItems.get(position).getImageURL()).into(mSliderItemBinding.imageProduct);
+        public void onBind(int position, Context context) {
+            String imageUrl = mSliderItems.get(position).getImageURL();
+            if (imageUrl != null)
+                Glide.with(context).load(imageUrl).into(mSliderItemBinding.imageProduct);
         }
     }
 

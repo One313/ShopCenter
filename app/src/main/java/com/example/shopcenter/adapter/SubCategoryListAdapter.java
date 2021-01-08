@@ -46,10 +46,10 @@ public class SubCategoryListAdapter extends RecyclerView.Adapter<SubCategoryList
     @Override
     public int getItemCount() {
         int size = 0;
-        switch (mCategoryType){
+        switch (mCategoryType) {
             case DIGITAL:
-               size = mViewModel.getSubDigitalLiveData().getValue().size();
-               break;
+                size = mViewModel.getSubDigitalLiveData().getValue().size();
+                break;
             case HEALTH:
                 size = mViewModel.getSubHealthLiveData().getValue().size();
                 break;
@@ -69,42 +69,41 @@ public class SubCategoryListAdapter extends RecyclerView.Adapter<SubCategoryList
         return size;
     }
 
-    class CategoryHolder extends RecyclerView.ViewHolder{
+    class CategoryHolder extends RecyclerView.ViewHolder {
         SubCategoryItemListBinding mItemListBinding;
+
         public CategoryHolder(SubCategoryItemListBinding itemListBinding) {
             super(itemListBinding.getRoot());
             mItemListBinding = itemListBinding;
             mItemListBinding.setViewModel(mViewModel);
             mItemListBinding.setCategoryType(mCategoryType);
-
-//            Typeface typeFace = Typeface.createFromAsset(mViewModel.getApplication().getAssets() , "font/Dirooz-FD.ttf");
-//            mItemListBinding.textViewCategoryName.setTypeface(typeFace);
         }
 
-        public void onBind(int position){
-           mItemListBinding.setPosition(position);
-           mItemListBinding.executePendingBindings();
-           String imageURL = null;
-           switch (mCategoryType){
-               case DIGITAL:
-                  imageURL = mViewModel.getSubDigitalLiveData().getValue().get(position).getCategoryImage().getSrc();
-                  break;
-               case HEALTH:
-                   imageURL = mViewModel.getSubHealthLiveData().getValue().get(position).getCategoryImage().getSrc();
-                   break;
-               case SPECIAL_SALE:
-                   imageURL = mViewModel.getSubSpecialSaleLiveData().getValue().get(position).getCategoryImage().getSrc();
-                   break;
-               case SUPER_MARKET:
-                   imageURL = mViewModel.getSubMarketLiveData().getValue().get(position).getCategoryImage().getSrc();
-                   break;
-               case BOOK_ART:
-                   imageURL = mViewModel.getSubArtLiveData().getValue().get(position).getCategoryImage().getSrc();
-                   break;
-               case FASHION_CLOTHING:
-                   imageURL = mViewModel.getSubClothingLiveData().getValue().get(position).getCategoryImage().getSrc();
-           }
-           Glide.with(mViewModel.getApplication()).load(imageURL).into(mItemListBinding.imageViewCategoryImage);
+        public void onBind(int position) {
+            mItemListBinding.setPosition(position);
+            mItemListBinding.executePendingBindings();
+            String imageURL = null;
+            switch (mCategoryType) {
+                case DIGITAL:
+                    imageURL = mViewModel.getSubDigitalLiveData().getValue().get(position).getCategoryImage().getSrc();
+                    break;
+                case HEALTH:
+                    imageURL = mViewModel.getSubHealthLiveData().getValue().get(position).getCategoryImage().getSrc();
+                    break;
+                case SPECIAL_SALE:
+                    imageURL = mViewModel.getSubSpecialSaleLiveData().getValue().get(position).getCategoryImage().getSrc();
+                    break;
+                case SUPER_MARKET:
+                    imageURL = mViewModel.getSubMarketLiveData().getValue().get(position).getCategoryImage().getSrc();
+                    break;
+                case BOOK_ART:
+                    imageURL = mViewModel.getSubArtLiveData().getValue().get(position).getCategoryImage().getSrc();
+                    break;
+                case FASHION_CLOTHING:
+                    imageURL = mViewModel.getSubClothingLiveData().getValue().get(position).getCategoryImage().getSrc();
+            }
+            if (imageURL != null)
+                Glide.with(mViewModel.getApplication()).load(imageURL).into(mItemListBinding.imageViewCategoryImage);
         }
     }
 }

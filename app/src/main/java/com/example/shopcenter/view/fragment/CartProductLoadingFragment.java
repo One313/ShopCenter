@@ -19,7 +19,7 @@ import com.example.shopcenter.viewmodel.CartFragmentViewModel;
 
 public class CartProductLoadingFragment extends Fragment {
 
-    private FragmentCartProductLoadingBinding mBinding;
+   /* private FragmentCartProductLoadingBinding mBinding;
     private CartFragmentViewModel mViewModel;
 
     @Override
@@ -45,5 +45,5 @@ public class CartProductLoadingFragment extends Fragment {
         // Inflate the layout for this fragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_cart_product_loading, container, false);
         return mBinding.getRoot();
-    }
+    }*/
 }

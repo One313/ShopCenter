@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.shopcenter.R;
+import com.example.shopcenter.data.model.ProductImage;
 import com.example.shopcenter.data.model.poduct.Product;
 import com.example.shopcenter.databinding.SearchListItemBinding;
 import com.example.shopcenter.viewmodel.ProductStrategyViewModel;
@@ -24,11 +25,12 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Pr
     private LifecycleOwner mOwner;
     private String mWord;
 
-    public SearchListAdapter(ProductStrategyViewModel viewModel , LifecycleOwner owner , String word) {
+    public SearchListAdapter(ProductStrategyViewModel viewModel, LifecycleOwner owner, String word) {
         mViewModel = viewModel;
         mOwner = owner;
         mWord = word;
     }
+
     @NonNull
     @Override
     public ProductHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -46,7 +48,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Pr
         holder.onBind(position);
 
         if (position == mViewModel.getProductLiveData().getValue().size() - 1) {
-            mViewModel.updateSearchList(mPage ,mWord);
+            mViewModel.updateSearchList(mPage, mWord);
             mPage++;
         }
     }
@@ -70,19 +72,15 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Pr
             super(productItemListBinding.getRoot());
             mItemListBinding = productItemListBinding;
             mItemListBinding.setViewModel(mViewModel);
-//            Typeface typeFace = Typeface.createFromAsset(mViewModel.getApplication().getAssets(), "font/Dirooz-FD.ttf");
-//            mItemListBinding.textViewProductName.setTypeface(typeFace);
-//            mItemListBinding.textViewProductPrice.setTypeface(typeFace);
         }
 
         public void onBind(int position) {
             mItemListBinding.setPosition(position);
             mItemListBinding.executePendingBindings();
-            String imageURL = null;
 
-            imageURL = mViewModel.getProductLiveData().getValue().get(position).getImages().get(0).getImageURL();
-
-            Glide.with(mViewModel.getApplication()).load(imageURL).into(mItemListBinding.imageViewProductImage);
+            List<ProductImage> images = mViewModel.getProductLiveData().getValue().get(position).getImages();
+            if (images != null && images.size() > 0)
+                Glide.with(mViewModel.getApplication()).load(images.get(0).getImageURL()).into(mItemListBinding.imageViewProductImage);
         }
     }
 }

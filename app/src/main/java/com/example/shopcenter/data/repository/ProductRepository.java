@@ -50,7 +50,6 @@ public class ProductRepository {
     }
 
     public ProductRepository() {
-        //mContext = context.getApplicationContext();
     }
 
 
@@ -179,7 +178,6 @@ public class ProductRepository {
 
             @Override
             public void onFailure(Call<Product> call, Throwable t) {
-                Log.d("MAJID", t.toString(), t);
             }
         });
     }
@@ -211,7 +209,6 @@ public class ProductRepository {
 
             @Override
             public void onFailure(Call<List<Product>> call, Throwable t) {
-                Log.d("MAJID", t.toString() + "fetchSearchProducts", t);
             }
         });
     }
