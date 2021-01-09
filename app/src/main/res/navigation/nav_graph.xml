@@ -97,7 +97,8 @@
    <fragment
        android:id="@+id/mapFragment"
        android:name="com.example.shopcenter.view.fragment.MapFragment"
-       android:label="MapFragment" />
+       android:label="MapFragment"
+       tools:layout="@layout/fragment_google_map"/>
    <fragment
        android:id="@+id/productListFragment"
        android:name="com.example.shopcenter.view.fragment.ProductListFragment"

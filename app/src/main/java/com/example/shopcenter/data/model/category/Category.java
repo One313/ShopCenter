@@ -1,8 +1,12 @@
 package com.example.shopcenter.data.model.category;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Category {
     private int mId;
     private String mName;
+    //TODO: ..>
+//    @SerializedName("")
     private int mParent;
     private CategoryImage mCategoryImage;
 
